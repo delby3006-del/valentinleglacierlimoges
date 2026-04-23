@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
   res.json({ message: "Route connexion OK" });
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { email, motDePasse } = req.body;
 
   if (!email || !motDePasse) {
@@ -17,16 +17,11 @@ router.post("/", (req, res) => {
     });
   }
 
-  const sql = "SELECT * FROM admins WHERE email = ?";
+  const sql = "SELECT * FROM admins WHERE email = $1";
 
-  db.get(sql, [email], async (err, admin) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({
-        succes: false,
-        message: "Erreur serveur",
-      });
-    }
+  try {
+    const result = await db.query(sql, [email]);
+    const admin = result.rows[0];
 
     if (!admin) {
       return res.status(401).json({
@@ -35,40 +30,38 @@ router.post("/", (req, res) => {
       });
     }
 
-    if (admin.actif === 0) {
+    if (Number(admin.actif) === 0) {
       return res.status(403).json({
         succes: false,
         message: "Compte désactivé",
       });
     }
 
-    try {
-      const valide = await bcrypt.compare(motDePasse, admin.mot_de_passe);
+    const valide = await bcrypt.compare(motDePasse, admin.mot_de_passe);
 
-      if (!valide) {
-        return res.status(401).json({
-          succes: false,
-          message: "Identifiants incorrects",
-        });
-      }
-
-      return res.status(200).json({
-        succes: true,
-        message: "Connexion réussie",
-        admin: {
-          id: admin.id_admin,
-          nom: admin.nom,
-          email: admin.email,
-        },
-      });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({
+    if (!valide) {
+      return res.status(401).json({
         succes: false,
-        message: "Erreur serveur",
+        message: "Identifiants incorrects",
       });
     }
-  });
+
+    return res.status(200).json({
+      succes: true,
+      message: "Connexion réussie",
+      admin: {
+        id: admin.id_admin,
+        nom: admin.nom,
+        email: admin.email,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      succes: false,
+      message: "Erreur serveur",
+    });
+  }
 });
 
 module.exports = router;

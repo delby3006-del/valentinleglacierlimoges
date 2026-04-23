@@ -2,35 +2,27 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const sql = `
     SELECT 
       gt.id_gourmandise_type,
       gt.nom_gourmandise_type,
       gt.actif AS type_actif,
-
       g.id_garniture,
       g.nom_garniture,
-
       gtg.id_liaison,
       gtg.actif AS liaison_actif
-
     FROM gourmandises_type gt
-
     LEFT JOIN gourmandises_type_garnitures gtg
       ON gt.id_gourmandise_type = gtg.id_gourmandise_type
-
     LEFT JOIN gourmandises_garnitures g
       ON gtg.id_garniture = g.id_garniture
-
     ORDER BY gt.id_gourmandise_type, g.id_garniture
   `;
 
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.error("Erreur SQL gourmandises :", err.message);
-      return res.status(500).json({ erreur: err.message });
-    }
+  try {
+    const result = await db.query(sql);
+    const rows = result.rows;
 
     const gourmandisesMap = {};
 
@@ -55,87 +47,87 @@ router.get("/", (req, res) => {
     });
 
     res.json(Object.values(gourmandisesMap));
-  });
+  } catch (err) {
+    console.error("Erreur SQL gourmandises :", err.message);
+    res.status(500).json({ erreur: err.message });
+  }
 });
 
-router.put("/type/:id", (req, res) => {
+router.put("/type/:id", async (req, res) => {
   const { id } = req.params;
   const { actif } = req.body;
 
   const sql = `
     UPDATE gourmandises_type
-    SET actif = ?
-    WHERE id_gourmandise_type = ?
+    SET actif = $1
+    WHERE id_gourmandise_type = $2
   `;
 
-  db.run(sql, [actif, id], function (err) {
-    if (err) {
-      console.error("Erreur update type :", err.message);
-      return res.status(500).json({
-        succes: false,
-        erreur: err.message,
-      });
-    }
+  try {
+    await db.query(sql, [Number(actif), Number(id)]);
 
     res.json({
       succes: true,
       message: "Type mis à jour",
-      changes: this.changes,
     });
-  });
+  } catch (err) {
+    console.error("Erreur update type :", err.message);
+    res.status(500).json({
+      succes: false,
+      erreur: err.message,
+    });
+  }
 });
 
-router.put("/liaison/:id", (req, res) => {
+router.put("/liaison/:id", async (req, res) => {
   const { id } = req.params;
   const { actif } = req.body;
 
   const sql = `
     UPDATE gourmandises_type_garnitures
-    SET actif = ?
-    WHERE id_liaison = ?
+    SET actif = $1
+    WHERE id_liaison = $2
   `;
 
-  db.run(sql, [actif, id], function (err) {
-    if (err) {
-      console.error("Erreur update liaison :", err.message);
-      return res.status(500).json({
-        succes: false,
-        erreur: err.message,
-      });
-    }
+  try {
+    await db.query(sql, [Number(actif), Number(id)]);
 
     res.json({
       succes: true,
       message: "Liaison mise à jour",
-      changes: this.changes,
     });
-  });
+  } catch (err) {
+    console.error("Erreur update liaison :", err.message);
+    res.status(500).json({
+      succes: false,
+      erreur: err.message,
+    });
+  }
 });
 
-router.put("/type/:id/activer-garnitures", (req, res) => {
+router.put("/type/:id/activer-garnitures", async (req, res) => {
   const { id } = req.params;
 
   const sql = `
     UPDATE gourmandises_type_garnitures
     SET actif = 1
-    WHERE id_gourmandise_type = ?
+    WHERE id_gourmandise_type = $1
   `;
 
-  db.run(sql, [id], function (err) {
-    if (err) {
-      console.error("Erreur activation auto garnitures :", err.message);
-      return res.status(500).json({
-        succes: false,
-        erreur: err.message,
-      });
-    }
+  try {
+    await db.query(sql, [Number(id)]);
 
     res.json({
       succes: true,
       message: "Garnitures du type activées",
-      changes: this.changes,
     });
-  });
+  } catch (err) {
+    console.error("Erreur activation auto garnitures :", err.message);
+    res.status(500).json({
+      succes: false,
+      erreur: err.message,
+    });
+  }
 });
 
 module.exports = router;

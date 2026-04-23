@@ -1,14 +1,17 @@
-const sqlite3 = require("sqlite3").verbose();
-const path = require("path");
+const { Pool } = require("pg");
 
-const dbPath = path.join(__dirname, "database", "valentin_glacier.db");
+const pool = new Pool(
+  process.env.DATABASE_URL
+    ? {
+        connectionString: process.env.DATABASE_URL,
+      }
+    : {
+        user: "postgres",
+        host: "172.27.117.221",
+        database: "valentin_glacier",
+        password: "gogo12",
+        port: 5432,
+      },
+);
 
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error("Erreur connexion BDD :", err.message);
-  } else {
-    console.log("Connecté à SQLite");
-  }
-});
-
-module.exports = db;
+module.exports = pool;

@@ -1,5 +1,6 @@
 import "./Conteneur_Glaces_Generique.css";
 import { useEffect, useState } from "react";
+import { API_URL } from "../../config";
 
 export default function ConteneurGlaces({
   idType,
@@ -16,7 +17,7 @@ export default function ConteneurGlaces({
       try {
         setErreur("");
 
-        let url = "http://localhost:3001/api/glaces?";
+        let url = `${API_URL}/api/glaces?`;
         const params = [];
 
         if (actif !== undefined) {
@@ -57,18 +58,15 @@ export default function ConteneurGlaces({
 
       const nouvelleValeur = Number(actifActuel) === 1 ? 0 : 1;
 
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/glaces/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            actif: nouvelleValeur,
-          }),
+      const response = await fetch(`${API_URL}/api/glaces/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          actif: nouvelleValeur,
+        }),
+      });
 
       const data = await response.json();
       console.log("Réponse du serveur :", data);

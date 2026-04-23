@@ -9,13 +9,11 @@ const machinesRoutes = require("./routes/machines");
 const parfumsItaliennesRoutes = require("./routes/parfumsItaliennes");
 const italiennesRoutes = require("./routes/italiennes");
 const gourmandisesRoutes = require("./routes/gourmandises");
-const connexionRoutes = require("./routes/connexion");
 const boissonsRoutes = require("./routes/boissons");
+const connexionRoutes = require("./routes/connexion");
 
 const app = express();
-
 const PORT = process.env.PORT || 3001;
-const HOST = process.env.HOST || "localhost";
 
 app.use(cors());
 app.use(express.json());
@@ -26,10 +24,9 @@ app.use("/api/machines", machinesRoutes);
 app.use("/api/parfums-italiennes", parfumsItaliennesRoutes);
 app.use("/api/italiennes", italiennesRoutes);
 app.use("/api/gourmandises", gourmandisesRoutes);
-app.use("/api/connexion", connexionRoutes);
 app.use("/api/boissons", boissonsRoutes);
+app.use("/api/connexion", connexionRoutes);
 
-app.listen(PORT, HOST, () => {
-  console.log(`→ Local     : http://localhost:${PORT}`);
-  console.log(`→ Réseau    : http://${HOST}:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Serveur démarré sur le port ${PORT}`);
 });

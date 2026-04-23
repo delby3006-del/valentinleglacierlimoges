@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const { actif, id_type } = req.query;
 
   let sql = `
@@ -13,30 +13,32 @@ router.get("/", (req, res) => {
   `;
 
   const params = [];
+  let paramIndex = 1;
 
   if (actif !== undefined) {
-    sql += ` AND g.actif = ?`;
+    sql += ` AND g.actif = $${paramIndex}`;
     params.push(actif);
+    paramIndex++;
   }
 
   if (id_type !== undefined) {
-    sql += ` AND g.id_type = ?`;
+    sql += ` AND g.id_type = $${paramIndex}`;
     params.push(id_type);
+    paramIndex++;
   }
 
   sql += ` ORDER BY g.nom_glace ASC`;
 
-  db.all(sql, params, (err, rows) => {
-    if (err) {
-      console.error("Erreur SQL :", err.message);
-      return res.status(500).json({ erreur: err.message });
-    }
-
-    res.json(rows);
-  });
+  try {
+    const result = await db.query(sql, params);
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Erreur SQL :", err.message);
+    res.status(500).json({ erreur: err.message });
+  }
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   console.log("ID reçu :", req.params.id);
   console.log("BODY reçu :", req.body);
 
@@ -60,24 +62,24 @@ router.put("/:id", (req, res) => {
 
   const sql = `
     UPDATE glaces_parfums
-    SET actif = ?
-    WHERE id_glace = ?
+    SET actif = $1
+    WHERE id_glace = $2
   `;
 
-  db.run(sql, [Number(actif), Number(id)], function (err) {
-    if (err) {
-      console.error("Erreur SQL :", err.message);
-      return res.status(500).json({
-        succes: false,
-        erreur: err.message,
-      });
-    }
+  try {
+    await db.query(sql, [actif, id]);
 
     res.json({
       succes: true,
       message: "État mis à jour",
     });
-  });
+  } catch (err) {
+    console.error("Erreur SQL :", err.message);
+    res.status(500).json({
+      succes: false,
+      erreur: err.message,
+    });
+  }
 });
 
 module.exports = router;

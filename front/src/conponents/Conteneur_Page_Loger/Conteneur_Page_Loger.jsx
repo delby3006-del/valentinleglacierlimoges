@@ -1,6 +1,7 @@
 import "./Conteneur_Page_Loger.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { API_URL } from "../../config";
 
 export default function Logeur() {
   const [email, setEmail] = useState("");
@@ -13,19 +14,16 @@ export default function Logeur() {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/connexion`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            motDePasse,
-          }),
+      const response = await fetch(`${API_URL}/api/connexion`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          email,
+          motDePasse,
+        }),
+      });
 
       const data = await response.json();
 

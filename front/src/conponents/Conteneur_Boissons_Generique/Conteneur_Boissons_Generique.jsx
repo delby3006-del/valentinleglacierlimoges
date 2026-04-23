@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../../config";
 import "./Conteneur_Boissons_Generique.css";
 
 export default function Conteneur_Boissons_Generique({ idType, titre }) {
@@ -7,19 +8,24 @@ export default function Conteneur_Boissons_Generique({ idType, titre }) {
   useEffect(() => {
     const chargerBoissons = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/boissons");
+        const res = await fetch(`${API_URL}/api/boissons`);
 
         if (!res.ok) {
           throw new Error("Erreur serveur");
         }
 
         const data = await res.json();
-        const type = data.find((t) => t.id_type === idType);
+        console.log("Données boissons :", data);
 
-        if (type) {
-          const boissonsActives = type.boissons.filter(
-            (b) => Number(b.actif) === 1,
+        const typeTrouve = data.find(
+          (t) => Number(t.id_type) === Number(idType),
+        );
+
+        if (typeTrouve) {
+          const boissonsActives = (typeTrouve.boissons || []).filter(
+            (b) => b.actif === true || Number(b.actif) === 1,
           );
+
           setBoissons(boissonsActives);
         } else {
           setBoissons([]);

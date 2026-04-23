@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../../config";
 import "./Conteneur_Gourmandises_Generique.css";
 
 export default function Conteneur_Gourmandises_Generique({ admin = false }) {
@@ -6,9 +7,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
 
   const chargerGourmandises = async () => {
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/gourmandises`,
-      );
+      const res = await fetch(`${API_URL}/api/gourmandises`);
 
       if (!res.ok) {
         throw new Error("Erreur serveur");
@@ -33,16 +32,13 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
     try {
       const nouvelActif = Number(actifActuel) === 1 ? 0 : 1;
 
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/gourmandises/type/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ actif: nouvelActif }),
+      const response = await fetch(`${API_URL}/api/gourmandises/type/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({ actif: nouvelActif }),
+      });
 
       const data = await response.json();
 
@@ -52,7 +48,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
 
       if (nouvelActif === 1) {
         const autoResponse = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/gourmandises/type/${id}/activer-garnitures`,
+          `${API_URL}/api/gourmandises/type/${id}/activer-garnitures`,
           {
             method: "PUT",
           },
@@ -74,7 +70,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
   const toggleLiaisonGarniture = async (idLiaison, actifActuel) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/gourmandises/liaison/${idLiaison}`,
+        `${API_URL}/api/gourmandises/liaison/${idLiaison}`,
         {
           method: "PUT",
           headers: {
@@ -112,7 +108,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
 
   const gourmandisesAffichees = admin
     ? gourmandises
-    : gourmandises.filter((gourmandise) => Number(gourmandise.actif) === 1);
+    : gourmandises.filter((g) => Number(g.actif) === 1);
 
   return (
     <section className="gourmandises" id="section-gourmandises">
@@ -149,9 +145,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
 
             <ul>
               {gourmandise.garnitures?.map((garniture) => {
-                if (!admin && Number(garniture.actif) !== 1) {
-                  return null;
-                }
+                if (!admin && Number(garniture.actif) !== 1) return null;
 
                 return (
                   <li key={garniture.id_liaison} className="ligne-garniture">
