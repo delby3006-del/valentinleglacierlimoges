@@ -1,0 +1,36 @@
+.bandeau-defilant {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-text-tertiary);
+  padding: 20px 0;
+  margin-top: -16px;
+}
+
+.bandeau-track {
+  display: flex;
+  width: max-content;
+  animation: defilement 18s linear infinite;
+}
+
+.bandeau-content {
+  display: flex;
+  flex-shrink: 0;
+  gap: 100px;
+  white-space: nowrap;
+}
+
+.bandeau-content span {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@keyframes defilement {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

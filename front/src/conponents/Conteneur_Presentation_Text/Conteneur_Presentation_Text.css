@@ -1,0 +1,110 @@
+.conteneur-presentation-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  height: 690px;
+  position: relative;
+  top: -16px;
+  background-color: var(--color-text-quaternary);
+}
+.titre-presentation {
+  font-family: "Playfair", serif;
+  font-weight: 400;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+
+.titre-secondary {
+  font-family: "Playfair", serif;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-tertiary-bis);
+}
+.description-presentation-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.logo-terreadelice {
+  width: 100px;
+  height: auto;
+  margin-left: 5rem;
+}
+
+.description-presentation,
+.description-secndary {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 3px;
+  margin-left: 2rem;
+  color: #555;
+}
+
+.description-text {
+  font-weight: 400;
+  font-size: 20px;
+  margin-left: 2rem;
+  color: #7a6045;
+  width: 70%;
+}
+
+.btn-decouvrir {
+  background-color: var(--color-background);
+  color: var(--color-text-quaternary);
+  border: none;
+  padding: 20px 50px;
+  font-size: 22px;
+  cursor: pointer;
+  margin-left: 2rem;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.separateur {
+  margin-top: 45px;
+  margin-left: 2rem;
+  width: 90%;
+  border: 1px solid var(--color-text-tertiary);
+  position: relative;
+}
+.info-lieux {
+  width: 90%;
+  margin-left: 2rem;
+  margin-top: 20px;
+}
+
+.divers,
+.info-coordonnees {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+}
+
+.divers {
+  margin-bottom: 15px;
+}
+
+.divers p,
+.info-coordonnees p {
+  margin: 0;
+  text-align: left;
+}
+
+.divers p {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  text-align: center;
+}
+
+.info-coordonnees p {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  margin-top: -15px;
+}

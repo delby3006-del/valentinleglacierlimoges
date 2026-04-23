@@ -1,0 +1,64 @@
+.gourmandises {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-text-quaternary);
+  padding-bottom: 2rem;
+}
+
+.conteneur-gourmandises {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  gap: 5rem;
+  justify-content: center;
+}
+
+.titre-conteneur-gourmandises {
+  color: var(--color-background);
+  font-size: 44px;
+  text-align: center;
+  margin: 50px;
+  font-family: "playfair-display", serif;
+}
+
+.carte-gourmandises {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+.carte-gourmandises-header {
+  background-color: var(--color-background);
+  width: 100%;
+}
+.carte-gourmandises h4 {
+  font-size: 1.5em;
+  margin: 0;
+  /* background-color: var(--color-background);
+  width: 100%; */
+  color: var(--color-text-tertiary-bis);
+  text-align: center;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.carte-gourmandises ul {
+  list-style-type: none;
+  background-color: color-mix(in srgb, var(--color-text-quaternary) 70%, white);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.carte-gourmandises ul li {
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--color-background);
+  font-weight: 550;
+}
+
+.carte-gourmandises ul li:nth-child(even) {
+  background-color: var(--color-secondary);
+}

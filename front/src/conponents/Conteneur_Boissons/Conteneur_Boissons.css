@@ -1,0 +1,28 @@
+.boissons {
+  width: 100%;
+  background-color: var(--color-background);
+  padding: 2rem 0 3rem 0;
+}
+
+.titre-conteneur-boissons {
+  color: var(--color-text-quaternary);
+  font-size: 44px;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  font-family: "playfair-display", serif;
+}
+
+.bloc-boissons {
+  max-width: 60%;
+  margin: 0 auto;
+  background-color: var(--color-text-quaternary);
+  padding: 2.5rem 3rem;
+  box-sizing: border-box;
+}
+
+.colonnes-boissons {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+}
