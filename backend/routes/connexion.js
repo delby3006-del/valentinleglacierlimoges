@@ -1,63 +1,60 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
 const db = require("../db");
-
-router.get("/", (req, res) => {
-  res.json({ message: "Route connexion OK" });
-});
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
-  const { email, motDePasse } = req.body;
-
-  if (!email || !motDePasse) {
-    return res.status(400).json({
-      succes: false,
-      message: "Email et mot de passe requis",
-    });
-  }
-
-  const sql = "SELECT * FROM admins WHERE email = $1";
+  const { email, mot_de_passe } = req.body;
 
   try {
-    const result = await db.query(sql, [email]);
+    const result = await db.query(
+      `SELECT id_admin, nom, email, mot_de_passe, actif
+       FROM admins
+       WHERE email = $1`,
+      [email],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(401).json({
+        succes: false,
+        message: "Identifiants incorrects",
+      });
+    }
+
     const admin = result.rows[0];
 
-    if (!admin) {
-      return res.status(401).json({
-        succes: false,
-        message: "Identifiants incorrects",
-      });
-    }
-
-    if (Number(admin.actif) === 0) {
+    if (Number(admin.actif) !== 1) {
       return res.status(403).json({
         succes: false,
-        message: "Compte désactivé",
+        message: "Compte inactif",
       });
     }
 
-    const valide = await bcrypt.compare(motDePasse, admin.mot_de_passe);
+    const passwordOK = await bcrypt.compare(mot_de_passe, admin.mot_de_passe);
 
-    if (!valide) {
+    if (!passwordOK) {
       return res.status(401).json({
         succes: false,
         message: "Identifiants incorrects",
       });
     }
 
-    return res.status(200).json({
+    // 🔥 ICI QUE TU METS TON JWT
+    const token = jwt.sign(
+      { id_admin: admin.id_admin, role: "admin" },
+      process.env.JWT_SECRET,
+      { expiresIn: "15m" },
+    );
+
+    res.json({
       succes: true,
       message: "Connexion réussie",
-      admin: {
-        id: admin.id_admin,
-        nom: admin.nom,
-        email: admin.email,
-      },
+      token,
     });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
+  } catch (err) {
+    console.error("Erreur connexion :", err.message);
+    res.status(500).json({
       succes: false,
       message: "Erreur serveur",
     });

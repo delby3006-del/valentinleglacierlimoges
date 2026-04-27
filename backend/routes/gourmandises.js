@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const authAdmin = require("../middlewares/authAdmin");
 
 router.get("/", async (req, res) => {
   const sql = `
@@ -53,7 +54,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/type/:id", async (req, res) => {
+router.put("/type/:id", authAdmin, async (req, res) => {
   const { id } = req.params;
   const { actif } = req.body;
 
@@ -79,7 +80,7 @@ router.put("/type/:id", async (req, res) => {
   }
 });
 
-router.put("/liaison/:id", async (req, res) => {
+router.put("/liaison/:id", authAdmin, async (req, res) => {
   const { id } = req.params;
   const { actif } = req.body;
 
@@ -105,7 +106,7 @@ router.put("/liaison/:id", async (req, res) => {
   }
 });
 
-router.put("/type/:id/activer-garnitures", async (req, res) => {
+router.put("/type/:id/activer-garnitures", authAdmin, async (req, res) => {
   const { id } = req.params;
 
   const sql = `

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const authAdmin = require("../middlewares/authAdmin");
 
 router.get("/", (req, res) => {
   db.all("SELECT * FROM granites ORDER BY nom_granite ASC", [], (err, rows) => {

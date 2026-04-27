@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { API_URL } from "../../config";
 import "./Conteneur_Gourmandises_Generique.css";
+import { fetchAdmin } from "../../utils/fetchAdmin";
 
 export default function Conteneur_Gourmandises_Generique({ admin = false }) {
   const [gourmandises, setGourmandises] = useState([]);
 
-  const chargerGourmandises = async () => {
+  const chargerGourmandises = useCallback(async () => {
     try {
       const res = await fetch(`${API_URL}/api/gourmandises`);
 
@@ -19,26 +20,31 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
     } catch (error) {
       console.error("Erreur gourmandises :", error);
     }
-  };
+  }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     chargerGourmandises();
 
     const interval = setInterval(chargerGourmandises, 65000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [chargerGourmandises]);
 
   const toggleTypeGourmandise = async (id, actifActuel) => {
     try {
       const nouvelActif = Number(actifActuel) === 1 ? 0 : 1;
 
-      const response = await fetch(`${API_URL}/api/gourmandises/type/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetchAdmin(
+        `${API_URL}/api/gourmandises/type/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ actif: nouvelActif }),
         },
-        body: JSON.stringify({ actif: nouvelActif }),
-      });
+      );
 
       const data = await response.json();
 
@@ -47,7 +53,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
       }
 
       if (nouvelActif === 1) {
-        const autoResponse = await fetch(
+        const autoResponse = await fetchAdmin(
           `${API_URL}/api/gourmandises/type/${id}/activer-garnitures`,
           {
             method: "PUT",
@@ -69,7 +75,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
 
   const toggleLiaisonGarniture = async (idLiaison, actifActuel) => {
     try {
-      const response = await fetch(
+      const response = await fetchAdmin(
         `${API_URL}/api/gourmandises/liaison/${idLiaison}`,
         {
           method: "PUT",
@@ -110,6 +116,10 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
     ? gourmandises
     : gourmandises.filter((g) => Number(g.actif) === 1);
 
+  if (!admin && gourmandisesAffichees.length === 0) {
+    return null;
+  }
+
   return (
     <section className="gourmandises" id="section-gourmandises">
       <h3 className="titre-conteneur-gourmandises">
@@ -130,6 +140,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
               {admin && (
                 <label className="checkbox-admin-gourmandise">
                   <input
+                    className="checkbox"
                     type="checkbox"
                     checked={Number(gourmandise.actif) === 1}
                     onChange={() =>
@@ -149,11 +160,10 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
 
                 return (
                   <li key={garniture.id_liaison} className="ligne-garniture">
-                    <span>{garniture.nom_garniture}</span>
-
                     {admin && (
                       <label className="checkbox-admin-garniture">
                         <input
+                          className="checkbox"
                           type="checkbox"
                           checked={Number(garniture.actif) === 1}
                           onChange={() =>
@@ -165,6 +175,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
                         />
                       </label>
                     )}
+                    <span>{garniture.nom_garniture}</span>
                   </li>
                 );
               })}

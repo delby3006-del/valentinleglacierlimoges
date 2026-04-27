@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const authAdmin = require("../middlewares/authAdmin");
 
 router.get("/", async (req, res) => {
   const { actif, id_type } = req.query;
@@ -38,7 +39,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", authAdmin, async (req, res) => {
   console.log("ID reçu :", req.params.id);
   console.log("BODY reçu :", req.body);
 

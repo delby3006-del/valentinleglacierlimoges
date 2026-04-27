@@ -21,17 +21,17 @@ export default function Logeur() {
         },
         body: JSON.stringify({
           email,
-          motDePasse,
+          mot_de_passe: motDePasse,
         }),
       });
 
       const data = await response.json();
 
-      if (data.succes) {
-        localStorage.setItem("admin", JSON.stringify(data.admin));
+      if (response.ok && data.succes && data.token) {
+        sessionStorage.setItem("token", data.token);
         navigate("/admin");
       } else {
-        setMessage(data.message);
+        setMessage(data.message || "Identifiants incorrects");
       }
     } catch (error) {
       console.error("Erreur connexion :", error);

@@ -6,8 +6,13 @@ import Conteneur_Gourmandises from "../conponents/Conteneur_Gourmandises/Contene
 import Conteneur_Boissons from "../conponents/Conteneur_Boissons/Conteneur_Boissons";
 import Header from "../conponents/Haeder/Header";
 import Footer from "../conponents/Footer/Footer";
+import { useEffect } from "react";
 
 export default function Page_accueil() {
+  useEffect(() => {
+    sessionStorage.removeItem("token");
+  }, []);
+
   return (
     <div>
       <Header mode="site" logoTo="/login" />

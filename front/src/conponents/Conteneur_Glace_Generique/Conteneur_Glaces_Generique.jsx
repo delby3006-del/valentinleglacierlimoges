@@ -1,6 +1,7 @@
 import "./Conteneur_Glaces_Generique.css";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../config";
+import { fetchAdmin } from "../../utils/fetchAdmin";
 
 export default function ConteneurGlaces({
   idType,
@@ -58,16 +59,12 @@ export default function ConteneurGlaces({
 
       const nouvelleValeur = Number(actifActuel) === 1 ? 0 : 1;
 
-      const response = await fetch(`${API_URL}/api/glaces/${id}`, {
+      const response = await fetchAdmin(`${API_URL}/api/glaces/${id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           actif: nouvelleValeur,
         }),
       });
-
       const data = await response.json();
       console.log("Réponse du serveur :", data);
 
