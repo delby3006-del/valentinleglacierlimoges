@@ -1,0 +1,35 @@
+.conteneur-boissons-generique { flex: 1; }
+
+.titre-boissons {
+  text-align: center;
+  color: var(--color-text);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+  text-shadow: 0.1em 0.1em rgb(94, 94, 94);
+}
+
+.liste-boissons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+}
+
+.item-boisson {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  color: var(--color-text-quaternary);
+}
+
+@media screen and (max-width: 900px) {
+  .conteneur-boissons-generique { width: 100%; }
+  .item-boisson { font-size: 1.15rem; }
+}
+
+@media screen and (max-width: 600px) {
+  .titre-boissons { margin-bottom: 1rem; }
+  .liste-boissons { text-align: center; }
+  .item-boisson { font-size: 1.05rem; margin-bottom: 14px; }
+}

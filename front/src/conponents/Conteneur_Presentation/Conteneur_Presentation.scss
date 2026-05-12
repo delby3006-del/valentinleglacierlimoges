@@ -1,0 +1,17 @@
+$tablette: 1024px;
+
+.conteneur-presentation {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-text-quaternary);
+}
+
+@media screen and (max-width: $tablette) {
+  .conteneur-presentation {
+    flex-direction: column;
+  }
+}

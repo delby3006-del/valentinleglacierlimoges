@@ -11,10 +11,44 @@
   --color-text-quaternary: #f5e7c5;
   --color-encadrement: #a36830;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "dm-sans", sans-serif;
+  font-family: "DM Sans", sans-serif;
   background-color: var(--color-secondary);
+}
+
+.conteneur-presentation {
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.conteneur-presentation-text {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .conteneur-presentation-text {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .btn-decouvrir,
+  .separateur,
+  .info-lieux {
+    max-width: 100%;
+  }
 }

@@ -1,0 +1,90 @@
+.section-supplements-saison {
+  width: 100%;
+  background-color: var(--color-background-secondary);
+  padding: 40px 20px 70px;
+}
+
+.titre-supplements-saison {
+  text-align: center;
+  font-family: "playfair-display", serif;
+  font-size: clamp(2rem, 5vw, 42px);
+  color: var(--color-text-quaternary);
+  margin: 0 0 30px;
+}
+
+.conteneur-supplements-saison {
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  width: 100%;
+}
+
+.bloc-supplement-saison {
+  width: 32rem;
+  text-align: center;
+}
+
+.titre-bloc-supplement {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  padding: 16px;
+  border-radius: 4px;
+  font-size: 20px;
+  margin: 0 auto 25px;
+}
+
+.carte-supplement-saison {
+  background-color: var(--color-text-tertiary-bis);
+  border: 2px solid var(--color-encadrement);
+  border-radius: 80px;
+  min-height: 16rem;
+  padding: 40px;
+  color: var(--color-background);
+}
+
+.italiennes-generique.visiteur {
+  .machine-italienne-liste {
+    display: flex;
+    min-height: 2rem;
+    width: 20rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border-radius: 20px;
+  }
+
+  &.supplement {
+    .machine-italienne-liste {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      width: auto;
+      height: auto;
+    }
+
+    .machine-italienne-parfum.actif { justify-content: center; }
+  }
+}
+
+.machine-granite-parfum.actif {
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 900px) {
+  .conteneur-supplements-saison { gap: 40px; }
+  .bloc-supplement-saison { width: 45%; }
+  .carte-supplement-saison { border-radius: 50px; padding: 32px; }
+}
+
+@media screen and (max-width: 600px) {
+  .section-supplements-saison { padding: 30px 12px 45px; }
+  .conteneur-supplements-saison { flex-direction: column; align-items: center; gap: 30px; }
+  .bloc-supplement-saison { width: 100%; }
+  .carte-supplement-saison { border-radius: 32px; min-height: auto; padding: 24px 16px; }
+  .italiennes-generique.visiteur .machine-italienne-liste { width: 100%; padding: 24px 16px; }
+  .machine-granite-parfum.actif { font-size: 20px; }
+}

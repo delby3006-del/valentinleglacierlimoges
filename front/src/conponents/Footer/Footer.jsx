@@ -1,4 +1,4 @@
-import "./Footer.css";
+import "./Footer.scss";
 import Coordonnees from "../Coordonnees/Coordonnes.jsx";
 
 export default function Footer() {

@@ -1,0 +1,53 @@
+.section-granites,
+.section-admin-granites {
+  width: 100%;
+  background-color: var(--color-text-tertiary);
+  padding: 40px 20px;
+}
+
+.titre-granites,
+.titre-admin-granites {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 44px);
+  margin: 0 0 30px;
+  font-family: "playfair-display", serif;
+  color: var(--color-text-quaternary);
+}
+
+.conteneur-granites-generique {
+  margin: auto;
+  min-height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.liste-granites {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  columns: 2;
+  color: var(--color-background);
+  font-weight: 550;
+  width: min(100%, 42rem);
+}
+
+.item-granite {
+  font-size: 22px;
+  margin-bottom: 12px;
+  break-inside: avoid;
+
+  input { margin-right: 10px; }
+}
+
+@media screen and (max-width: 900px) {
+  .section-granites, .section-admin-granites { padding: 35px 16px; }
+  .item-granite { font-size: 20px; }
+}
+
+@media screen and (max-width: 600px) {
+  .section-granites, .section-admin-granites { padding: 28px 12px; }
+  .conteneur-granites-generique { min-height: auto; }
+  .liste-granites { columns: 1; text-align: center; }
+  .item-granite { font-size: 18px; }
+}

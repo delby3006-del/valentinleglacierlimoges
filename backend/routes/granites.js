@@ -3,76 +3,98 @@ const router = express.Router();
 const db = require("../db");
 const authAdmin = require("../middlewares/authAdmin");
 
-router.get("/", (req, res) => {
-  db.all("SELECT * FROM granites ORDER BY nom_granite ASC", [], (err, rows) => {
-    if (err) {
-      return res.status(500).json({ erreur: err.message });
-    }
-    res.json(rows);
-  });
+// GET /api/granites
+router.get("/", async (req, res) => {
+  const { actif } = req.query;
+
+  let sql = `
+    SELECT 
+      id_granite,
+      nom_granite,
+      actif
+    FROM granites
+  `;
+
+  if (actif === "1") {
+    sql += ` WHERE actif = 1`;
+  }
+
+  sql += ` ORDER BY nom_granite`;
+
+  try {
+    const result = await db.query(sql);
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Erreur GET granites :", error);
+    res.status(500).json({ erreur: "Erreur serveur granites" });
+  }
 });
 
-router.get("/actifs", (req, res) => {
-  db.all(
-    "SELECT * FROM granites WHERE actif = 1 ORDER BY nom_granite ASC",
-    [],
-    (err, rows) => {
-      if (err) {
-        return res.status(500).json({ erreur: err.message });
-      }
-      res.json(rows);
-    },
-  );
+router.put("/tout", authAdmin, async (req, res) => {
+  const { actif } = req.body;
+
+  try {
+    await db.query("UPDATE granites SET actif = $1", [actif]);
+
+    res.json({ ok: true });
+  } catch (error) {
+    console.error("Erreur update tous granités :", error);
+    res.status(500).json({ erreur: "Erreur serveur" });
+  }
 });
 
-router.post("/", (req, res) => {
-  const { nom_granite, actif } = req.body;
-
-  db.run(
-    "INSERT INTO granites (nom_granite, actif) VALUES (?, ?)",
-    [nom_granite, actif ?? 1],
-    function (err) {
-      if (err) {
-        return res.status(500).json({ erreur: err.message });
-      }
-      res.json({
-        message: "Granité ajouté",
-        id_granite: this.lastID,
-      });
-    },
-  );
-});
-
-router.put("/:id", (req, res) => {
-  const { id } = req.params;
-  const { nom_granite, actif } = req.body;
-
-  db.run(
-    "UPDATE granites SET nom_granite = ?, actif = ? WHERE id_granite = ?",
-    [nom_granite, actif, id],
-    function (err) {
-      if (err) {
-        return res.status(500).json({ erreur: err.message });
-      }
-      res.json({ message: "Granité modifié" });
-    },
-  );
-});
-
-router.patch("/:id/actif", (req, res) => {
+// PUT /api/granites/:id
+router.put("/:id", authAdmin, async (req, res) => {
   const { id } = req.params;
   const { actif } = req.body;
 
-  db.run(
-    "UPDATE granites SET actif = ? WHERE id_granite = ?",
-    [actif, id],
-    function (err) {
-      if (err) {
-        return res.status(500).json({ erreur: err.message });
-      }
-      res.json({ message: "Disponibilité modifiée" });
-    },
-  );
+  try {
+    const result = await db.query(
+      `
+      UPDATE granites
+      SET actif = $1
+      WHERE id_granite = $2
+      RETURNING *
+      `,
+      [actif, id],
+    );
+
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error("Erreur PUT granites :", error);
+    res.status(500).json({ erreur: "Erreur modification granité" });
+  }
+});
+
+// PUT /api/granites/tout
+router.put("/tout", authAdmin, async (req, res) => {
+  const { actif } = req.body;
+
+  try {
+    await db.query(
+      `
+      UPDATE granites
+      SET actif = $1
+      `,
+      [actif],
+    );
+
+    res.json({ message: "Tous les granités mis à jour" });
+  } catch (error) {
+    console.error("Erreur update tous granités :", error);
+    res.status(500).json({ erreur: "Erreur serveur" });
+  }
+});
+router.put("/tout", authAdmin, async (req, res) => {
+  const { actif } = req.body;
+
+  try {
+    await db.query("UPDATE granites SET actif = $1", [actif]);
+    res.json({ ok: true });
+  } catch (error) {
+    console.error("Erreur update tous granités :", error);
+    res.status(500).json({ erreur: "Erreur serveur" });
+  }
 });
 
 module.exports = router;

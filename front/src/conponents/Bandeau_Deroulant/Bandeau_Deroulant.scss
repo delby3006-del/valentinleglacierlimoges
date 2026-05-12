@@ -1,0 +1,65 @@
+.bandeau-defilant {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-text-tertiary);
+  padding: 20px 0;
+  margin-top: -16px;
+
+  .bandeau-track {
+    display: flex;
+    width: max-content;
+    animation: defilement 20s linear infinite;
+  }
+
+  .bandeau-content {
+    display: flex;
+    flex-shrink: 0;
+    gap: 100px;
+    white-space: nowrap;
+
+    span {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}
+
+@keyframes defilement {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .bandeau-defilant {
+    padding: 16px 0;
+
+    .bandeau-content {
+      gap: 70px;
+    }
+    .bandeau-content span {
+      font-size: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bandeau-defilant {
+    padding: 12px 0;
+
+    .bandeau-track {
+      animation-duration: 16s;
+    }
+    .bandeau-content {
+      gap: 45px;
+    }
+    .bandeau-content span {
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+.conteneur-italiennes {
+  h2 {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 42px);
+    font-family: "playfair-display", serif;
+    color: var(--color-text-quaternary);
+    margin-bottom: 30px;
+    margin-top: 0;
+  }
+
+  &.admin { padding: 20px; }
+}
+
+.conteneur-italiennes-parfum {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.italiennes-generique.visiteur {
+  .machine-italienne-liste {
+    border-radius: 20px;
+    border: 1px solid var(--color-encadrement);
+  }
+
+  .machine-italienne-parfum.actif {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.double-parfum {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-background);
+}
+
+@media screen and (max-width: 900px) {
+  .conteneur-italiennes-parfum { gap: 16px; }
+  .double-parfum { font-size: 22px; }
+}
+
+@media screen and (max-width: 600px) {
+  .conteneur-italiennes.admin { padding: 12px; }
+  .conteneur-italiennes-parfum { flex-direction: column; align-items: center; }
+  .double-parfum { font-size: 20px; }
+}

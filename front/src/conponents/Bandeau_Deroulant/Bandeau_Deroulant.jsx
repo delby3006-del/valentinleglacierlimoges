@@ -1,4 +1,4 @@
-import "./Bandeau_Deroulant.css";
+import "./Bandeau_Deroulant.scss";
 
 export default function BandeauDefilant() {
   return (

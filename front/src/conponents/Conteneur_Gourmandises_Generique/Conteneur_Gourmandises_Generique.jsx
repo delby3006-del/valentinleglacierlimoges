@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { API_URL } from "../../config";
-import "./Conteneur_Gourmandises_Generique.css";
 import { fetchAdmin } from "../../utils/fetchAdmin";
+import "./Conteneur_Gourmandises_Generique.scss";
 
 export default function Conteneur_Gourmandises_Generique({ admin = false }) {
   const [gourmandises, setGourmandises] = useState([]);
@@ -22,7 +22,6 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
     }
   }, []);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     chargerGourmandises();
 
@@ -122,9 +121,9 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
 
   return (
     <section className="gourmandises" id="section-gourmandises">
-      <h3 className="titre-conteneur-gourmandises">
+      <h2 className="titre-conteneur-gourmandises">
         {admin ? "Gestion des Gourmandises" : "Nos Gourmandises"}
-      </h3>
+      </h2>
 
       <div className="conteneur-gourmandises">
         {gourmandisesAffichees.map((gourmandise) => (
@@ -133,9 +132,9 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
             key={gourmandise.id_gourmandise_type}
           >
             <div className="carte-gourmandises-header">
-              <h4 className="carte-gourmandises-titre">
+              <h3 className="carte-gourmandises-titre">
                 {gourmandise.nom_gourmandise_type}
-              </h4>
+              </h3>
 
               {admin && (
                 <label className="checkbox-admin-gourmandise">

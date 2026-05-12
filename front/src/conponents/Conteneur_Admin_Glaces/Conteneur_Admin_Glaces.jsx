@@ -1,5 +1,5 @@
-import "./Conteneur_Admin_Glaces.css";
-import ConteneurGlaces from "../Conteneur_Glace_Generique/Conteneur_Glaces_Generique";
+import "../Conteneur_Admin_Glaces/Conteneur_Admin_Glaces.scss";
+import ConteneurGlaces from "../Conteneur_Glaces_Generique/Conteneur_Glaces_Generique";
 
 export default function Conteneur_Admin_Glaces() {
   return (

@@ -1,0 +1,188 @@
+.header-coordonnee {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-background);
+  width: 100%;
+  min-height: 80px;
+  padding: 0 30px;
+
+  p {
+    color: var(--color-text);
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .coordonnee {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info-header {
+    width: 25%;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.cadena-fermer {
+  font-size: 1.2rem;
+  color: var(--color-encadrement);
+}
+
+.barre-nav {
+  width: 100%;
+  min-height: 88px;
+  background-color: var(--color-secondary);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.logo-valentin {
+  width: 230px;
+  position: absolute;
+  left: 30px;
+  top: -22px;
+  z-index: 30;
+}
+
+.nav {
+  width: 100%;
+  min-height: 88px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 38px;
+  padding-left: 290px;
+  padding-right: 30px;
+
+  a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  p {
+    background-color: var(--color-background-bio);
+    padding: 14px 20px;
+    color: white;
+    font-weight: 700;
+    border-radius: 10px;
+    margin: 0;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .barre-nav {
+    min-height: 125px;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-valentin {
+    width: 135px;
+    top: 10px;
+    left: 15px;
+  }
+
+  .logo-valentin img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .nav {
+    width: 100%;
+    padding-left: 165px;
+    padding-right: 15px;
+    min-height: 125px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    gap: 10px 16px;
+
+    a {
+      font-size: 14px;
+    }
+
+    p {
+      font-size: 13px;
+      padding: 9px 12px;
+      margin: 0;
+    }
+  }
+
+  .cadena-fermer {
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .barre-nav {
+    min-height: 115px;
+  }
+
+  .logo-valentin {
+    width: 115px;
+    top: 12px;
+    left: 10px;
+  }
+
+  .nav {
+    min-height: 115px;
+    padding-left: 135px;
+    gap: 8px 12px;
+
+    a {
+      font-size: 13px;
+    }
+
+    p {
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .barre-nav {
+    min-height: auto;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-valentin {
+    position: relative;
+    width: 120px;
+    top: auto;
+    left: auto;
+    margin: 0 auto 10px;
+  }
+
+  .nav {
+    min-height: auto;
+    padding: 0 10px;
+    gap: 10px 12px;
+
+    a {
+      font-size: 14px;
+    }
+
+    p {
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+  }
+}

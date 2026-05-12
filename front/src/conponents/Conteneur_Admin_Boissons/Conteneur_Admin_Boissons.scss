@@ -1,0 +1,13 @@
+.admin-ordre-boissons {
+  color: #e6dddd;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+  .admin-ordre-boissons { font-size: 18px; }
+}
+
+@media screen and (max-width: 600px) {
+  .admin-ordre-boissons { font-size: 16px; }
+}

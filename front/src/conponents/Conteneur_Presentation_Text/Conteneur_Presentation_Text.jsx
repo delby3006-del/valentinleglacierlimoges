@@ -1,4 +1,4 @@
-import "./Conteneur_Presentation_Text.css";
+import "./Conteneur_Presentation_Text.scss";
 import Coordonnees from "../Coordonnees/Coordonnes";
 
 export default function Conteneur_Presentation_Text() {

@@ -1,6 +1,7 @@
-import "./Header.css";
+import "./Header.scss";
 import Coordonnees from "../Coordonnees/Coordonnes.jsx";
 import { Link } from "react-router-dom";
+import { FaLock } from "react-icons/fa";
 
 export default function Header({ mode = "site" }) {
   const scrollTo = (id) => {
@@ -12,15 +13,18 @@ export default function Header({ mode = "site" }) {
 
   return (
     <div>
-      <div className="header-coordonnee">
-        <Coordonnees showTelephone={false} />
-        <p className="info-header">🌿 Glaces & Sorbets 100% BIO · Artisanaux</p>
-        <Coordonnees showAdresse={false} />
+      <div className="bandeau-superieur">
+        <div className="header-coordonnee">
+          <Coordonnees showTelephone={false} />
+          <p className="info-header">
+            🌿 Glaces & Sorbets 100% BIO · Artisanaux
+          </p>
+          <Coordonnees showAdresse={false} />
+        </div>
       </div>
-
       <div className="barre-nav">
         <div className="logo-valentin">
-          <Link to={mode === "admin" ? "/" : "/login"}>
+          <Link to="/">
             <img
               src="/images/logo_valentin.png"
               alt="Logo Valentin le glacier"
@@ -83,6 +87,9 @@ export default function Header({ mode = "site" }) {
           )}
 
           <p>🌿 100% BIO</p>
+          <Link to={mode === "admin" ? "/" : "/login"}>
+            <FaLock className="cadena-fermer" />
+          </Link>
         </nav>
       </div>
     </div>

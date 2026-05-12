@@ -1,4 +1,4 @@
-import "./Conteneur_Histoire.css";
+import "./Conteneur_Histoire.scss";
 
 export default function Conteneur_Histoire() {
   return (

@@ -1,0 +1,182 @@
+$mobile: 768px;
+$tablette: 1024px;
+
+.conteneur-presentation-text {
+  width: 50%;
+  min-height: 700px;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-text-quaternary);
+}
+
+.titre-presentation {
+  font-family: "Playfair", serif;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 1;
+  margin: 0 0 1rem;
+}
+
+.titre-secondary {
+  display: block;
+  font-family: "Playfair", serif;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-tertiary-bis);
+  margin-top: 1rem;
+}
+
+.description-presentation-container {
+  width: 100%;
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.description-presentation,
+.description-secndary {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: 3px;
+  color: #555;
+  margin: 0;
+}
+
+.logo-terreadelice {
+  width: 100px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.description-text {
+  max-width: 520px;
+  margin: 2.5rem 0 0;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: #7a6045;
+}
+
+.btn-decouvrir {
+  margin-top: 2.5rem;
+  background-color: var(--color-background);
+  color: var(--color-text-quaternary);
+  border: none;
+  padding: 1.2rem 3.5rem;
+  font-size: 1.35rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.separateur {
+  width: 100%;
+  margin-top: 3rem;
+  border: 1px solid var(--color-text-tertiary);
+}
+
+.info-lieux {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.divers,
+.info-coordonnees {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 1rem;
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.divers {
+  margin-bottom: 1rem;
+
+  p {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+  }
+}
+
+.info-coordonnees p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  font-family: "DM Sans", sans-serif;
+}
+
+@media screen and (max-width: $tablette) {
+  .conteneur-presentation-text {
+    width: 100%;
+    min-height: auto;
+    padding: 3rem 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .description-presentation-container {
+    justify-content: center;
+  }
+
+  .description-text {
+    max-width: 650px;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .conteneur-presentation-text {
+    padding: 2rem 1.2rem;
+  }
+
+  .titre-presentation {
+    font-size: 3rem;
+  }
+
+  .description-presentation-container {
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  .logo-terreadelice {
+    width: 80px;
+  }
+
+  .description-presentation,
+  .description-secndary {
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+  }
+
+  .description-text {
+    font-size: 1.05rem;
+  }
+
+  .btn-decouvrir {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .divers,
+  .info-coordonnees {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+}
