@@ -129,6 +129,17 @@
 }
 
 @media screen and (max-width: 768px) {
+  .header-coordonnee {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    .info-header {
+      width: 50%;
+    }
+  }
   .barre-nav {
     min-height: 115px;
   }
