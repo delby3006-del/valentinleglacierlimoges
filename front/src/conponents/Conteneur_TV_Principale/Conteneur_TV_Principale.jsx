@@ -4,20 +4,14 @@ import "./Conteneur_TV_Principale.scss";
 
 export default function Conteneur_TV_Principale() {
   const [glaces, setGlaces] = useState([]);
-  const [italiennes, setItaliennes] = useState([]);
 
   const chargerDonneesTV = async () => {
     try {
-      const [resGlaces, resItaliennes] = await Promise.all([
-        fetch(`${API_URL}/api/glaces?actif=1`),
-        fetch(`${API_URL}/api/italiennes?actif=1`),
-      ]);
+      const resGlaces = await fetch(`${API_URL}/api/glaces?actif=1`);
 
       const dataGlaces = await resGlaces.json();
-      const dataItaliennes = await resItaliennes.json();
 
-      setGlaces(dataGlaces);
-      setItaliennes(dataItaliennes);
+      setGlaces(Array.isArray(dataGlaces) ? dataGlaces : []);
     } catch (error) {
       console.error("Erreur chargement TV :", error);
     }
@@ -50,20 +44,6 @@ export default function Conteneur_TV_Principale() {
               </p>
             ))}
           </div>
-        </div>
-
-        <div className="tv-bloc tv-italiennes">
-          <h2>Italiennes</h2>
-
-          {italiennes.map((machine) => (
-            <div key={machine.id_machine} className="tv-machine">
-              {machine.italiennes.map((item) => (
-                <span key={item.id_italienne}>
-                  {item.parfum.nom_parfum_italienne}
-                </span>
-              ))}
-            </div>
-          ))}
         </div>
       </section>
     </main>
