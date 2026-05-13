@@ -1,4 +1,9 @@
-.conteneur-boissons-generique { flex: 1; }
+.conteneur-boissons-generique {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .titre-boissons {
   text-align: center;
@@ -14,6 +19,8 @@
   padding: 0;
   margin: 0;
   font-weight: 500;
+  text-align: left;
+  min-width: 250px;
 }
 
 .item-boisson {
@@ -24,12 +31,27 @@
 }
 
 @media screen and (max-width: 900px) {
-  .conteneur-boissons-generique { width: 100%; }
-  .item-boisson { font-size: 1.15rem; }
+  .conteneur-boissons-generique {
+    width: 100%;
+  }
+
+  .item-boisson {
+    font-size: 1.15rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .titre-boissons { margin-bottom: 1rem; }
-  .liste-boissons { text-align: center; }
-  .item-boisson { font-size: 1.05rem; margin-bottom: 14px; }
+  .titre-boissons {
+    margin-bottom: 1rem;
+  }
+
+  .liste-boissons {
+    text-align: left;
+    min-width: auto;
+  }
+
+  .item-boisson {
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+  }
 }
