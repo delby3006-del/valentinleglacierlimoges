@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<Page_accueil />} />
         <Route path="/login" element={<Page_login />} />
         <Route path="admin" element={<Page_admin />} />
+        <Route path="/tv" element={<Pages_TV_Principale />} />
       </Routes>
     </>
   );
