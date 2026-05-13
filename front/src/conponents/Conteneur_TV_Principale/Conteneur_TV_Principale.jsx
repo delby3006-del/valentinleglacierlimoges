@@ -8,7 +8,6 @@ export default function Conteneur_TV_Principale() {
   const chargerDonneesTV = async () => {
     try {
       const resGlaces = await fetch(`${API_URL}/api/glaces?actif=1`);
-
       const dataGlaces = await resGlaces.json();
 
       setGlaces(Array.isArray(dataGlaces) ? dataGlaces : []);
@@ -21,9 +20,22 @@ export default function Conteneur_TV_Principale() {
     chargerDonneesTV();
 
     const interval = setInterval(chargerDonneesTV, 60000);
-
     return () => clearInterval(interval);
   }, []);
+
+  const trierAlphabetique = (liste) => {
+    return [...liste].sort((a, b) =>
+      a.nom_glace.localeCompare(b.nom_glace, "fr", { sensitivity: "base" }),
+    );
+  };
+
+  const cremes = trierAlphabetique(
+    glaces.filter((glace) => glace.nom_type?.toLowerCase().includes("crème")),
+  );
+
+  const sorbets = trierAlphabetique(
+    glaces.filter((glace) => glace.nom_type?.toLowerCase().includes("sorbet")),
+  );
 
   return (
     <main className="tv-page">
@@ -33,17 +45,30 @@ export default function Conteneur_TV_Principale() {
       </section>
 
       <section className="tv-contenu">
-        <div className="tv-bloc tv-glaces">
-          <h2>Nos parfums</h2>
+        <div className="tv-colonne">
+          <h2>Crèmes glacées</h2>
 
-          <div className="tv-liste-glaces">
-            {glaces.map((glace) => (
-              <p key={glace.id_glace}>
+          <ul className="tv-liste-glaces">
+            {cremes.map((glace) => (
+              <li key={glace.id_glace}>
                 {glace.nom_glace}
                 {glace.bio && <span> BIO</span>}
-              </p>
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+
+        <div className="tv-colonne">
+          <h2>Sorbets</h2>
+
+          <ul className="tv-liste-glaces">
+            {sorbets.map((glace) => (
+              <li key={glace.id_glace}>
+                {glace.nom_glace}
+                {glace.bio && <span> BIO</span>}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </main>

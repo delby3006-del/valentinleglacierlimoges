@@ -1,0 +1,35 @@
+.tv-page {
+  min-height: 100vh;
+}
+
+.tv-header {
+  text-align: center;
+
+  img {
+    max-width: 180px;
+  }
+}
+
+.tv-contenu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.tv-colonne {
+  h2 {
+    text-align: center;
+  }
+}
+
+.tv-liste-glaces {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  columns: 2;
+  column-gap: 3rem;
+
+  li {
+    break-inside: avoid;
+  }
+}
