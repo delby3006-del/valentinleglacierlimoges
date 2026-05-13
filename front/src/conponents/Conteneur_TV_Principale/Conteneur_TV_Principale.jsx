@@ -1,41 +1,56 @@
+import "./Conteneur_TV_Principale.scss";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../config";
-import "./Conteneur_TV_Principale.scss";
 
 export default function Conteneur_TV_Principale() {
-  const [glaces, setGlaces] = useState([]);
-
-  const chargerDonneesTV = async () => {
-    try {
-      const resGlaces = await fetch(`${API_URL}/api/glaces?actif=1`);
-      const dataGlaces = await resGlaces.json();
-
-      setGlaces(Array.isArray(dataGlaces) ? dataGlaces : []);
-    } catch (error) {
-      console.error("Erreur chargement TV :", error);
-    }
-  };
-
-  useEffect(() => {
-    chargerDonneesTV();
-
-    const interval = setInterval(chargerDonneesTV, 60000);
-    return () => clearInterval(interval);
-  }, []);
+  const [cremes, setCremes] = useState([]);
+  const [sorbets, setSorbets] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [erreur, setErreur] = useState("");
 
   const trierAlphabetique = (liste) => {
     return [...liste].sort((a, b) =>
-      a.nom_glace.localeCompare(b.nom_glace, "fr", { sensitivity: "base" }),
+      a.nom_glace.localeCompare(b.nom_glace, "fr", {
+        sensitivity: "base",
+      }),
     );
   };
 
-  const cremes = trierAlphabetique(
-    glaces.filter((glace) => glace.nom_type?.toLowerCase().includes("crème")),
-  );
+  useEffect(() => {
+    const chargerGlacesTV = async () => {
+      try {
+        setErreur("");
 
-  const sorbets = trierAlphabetique(
-    glaces.filter((glace) => glace.nom_type?.toLowerCase().includes("sorbet")),
-  );
+        const [resCremes, resSorbets] = await Promise.all([
+          fetch(`${API_URL}/api/glaces?actif=1&id_type=1`),
+          fetch(`${API_URL}/api/glaces?actif=1&id_type=2`),
+        ]);
+
+        if (!resCremes.ok || !resSorbets.ok) {
+          throw new Error("Erreur serveur");
+        }
+
+        const dataCremes = await resCremes.json();
+        const dataSorbets = await resSorbets.json();
+
+        setCremes(trierAlphabetique(dataCremes));
+        setSorbets(trierAlphabetique(dataSorbets));
+      } catch (error) {
+        console.error("Erreur chargement glaces TV :", error);
+        setErreur("Impossible de charger les glaces");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    chargerGlacesTV();
+
+    const interval = setInterval(chargerGlacesTV, 65000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (loading) return <p>Chargement...</p>;
+  if (erreur) return <p>{erreur}</p>;
 
   return (
     <main className="tv-page">
@@ -50,10 +65,7 @@ export default function Conteneur_TV_Principale() {
 
           <ul className="tv-liste-glaces">
             {cremes.map((glace) => (
-              <li key={glace.id_glace}>
-                {glace.nom_glace}
-                {glace.bio && <span> BIO</span>}
-              </li>
+              <li key={glace.id_glace}>{glace.nom_glace}</li>
             ))}
           </ul>
         </div>
@@ -63,10 +75,7 @@ export default function Conteneur_TV_Principale() {
 
           <ul className="tv-liste-glaces">
             {sorbets.map((glace) => (
-              <li key={glace.id_glace}>
-                {glace.nom_glace}
-                {glace.bio && <span> BIO</span>}
-              </li>
+              <li key={glace.id_glace}>{glace.nom_glace}</li>
             ))}
           </ul>
         </div>
