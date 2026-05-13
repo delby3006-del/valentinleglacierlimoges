@@ -55,19 +55,55 @@ export default function Conteneur_TV_Principale() {
   return (
     <main className="tv-page">
       <section className="tv-header">
-        <img src="/images/logo_valentin.png" alt="Valentin le glacier" />
-        <h1>Glaces & Sorbets du moment</h1>
+        <h1>Notre sélection de parfums</h1>
+      </section>
+
+      <section className="tv-prix">
+        <p>
+          1 boule
+          <span>3,60 €</span>
+        </p>
+
+        <p>
+          2 boules
+          <span>6,00 €</span>
+        </p>
+
+        <p>
+          3 boules
+          <span>7,70 €</span>
+        </p>
+
+        <p>
+          Milkshake
+          <span>6,70 €</span>
+        </p>
+
+        <p>
+          + chantilly maison
+          <span>1,30 €</span>
+        </p>
       </section>
 
       <section className="tv-contenu">
         <div className="tv-colonne">
-          <h2>Crèmes glacées</h2>
+          <h2>Crèmes Glacées</h2>
 
           <ul className="tv-liste-glaces">
             {cremes.map((glace) => (
               <li key={glace.id_glace}>{glace.nom_glace}</li>
             ))}
           </ul>
+        </div>
+
+        <div className="tv-centre">
+          <p>
+            En cornet
+            <br />
+            Ou
+            <br />
+            en pot ?
+          </p>
         </div>
 
         <div className="tv-colonne">
@@ -78,6 +114,14 @@ export default function Conteneur_TV_Principale() {
               <li key={glace.id_glace}>{glace.nom_glace}</li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="tv-bas">
+        <div className="tv-emporter">
+          <p>Large choix de ½ litre à emporter</p>
+          <p>12,00 € le pot</p>
+          <p>(environ 6 boules)</p>
         </div>
       </section>
     </main>
