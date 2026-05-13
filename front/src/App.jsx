@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Page_accueil from "./pages/Page_Accueil.jsx";
 import Page_login from "./pages/Page_Login.jsx";
 import Page_admin from "./pages/Page_Admin.jsx";
+import Pages_TV_Principale from "./pages/Pages_TV_Pricipale.jsx";
 
 function App() {
   return (
