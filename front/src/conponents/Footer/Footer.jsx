@@ -1,9 +1,10 @@
 import "./Footer.scss";
 import Coordonnees from "../Coordonnees/Coordonnes.jsx";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" id="infos-pratiques">
       <div className="footer-blocs">
         {/* Bloc 1 */}
         <div className="footer-bloc">
@@ -31,6 +32,11 @@ export default function Footer() {
           <p>Certifié Agriculture Biologique</p>
           <p>Produits 100% artisanaux</p>
           <p>+70 parfums disponibles</p>
+          <p>
+            <Link className="mention" to="/mention-legale">
+              Mention légale
+            </Link>
+          </p>
         </div>
       </div>
     </footer>

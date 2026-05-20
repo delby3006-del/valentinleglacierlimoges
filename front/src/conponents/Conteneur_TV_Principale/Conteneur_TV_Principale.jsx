@@ -16,6 +16,11 @@ export default function Conteneur_TV_Principale() {
     );
   };
 
+  const classeColonnes = (liste) => {
+    if (liste.length >= 24) return "colonnes-3";
+    return "colonnes-2";
+  };
+
   useEffect(() => {
     const chargerGlacesTV = async () => {
       try {
@@ -46,6 +51,7 @@ export default function Conteneur_TV_Principale() {
     chargerGlacesTV();
 
     const interval = setInterval(chargerGlacesTV, 65000);
+
     return () => clearInterval(interval);
   }, []);
 
@@ -85,39 +91,48 @@ export default function Conteneur_TV_Principale() {
         </p>
       </section>
 
-      <section className="tv-contenu">
+      <section
+        className={`tv-contenu ${cremes.length >= 24 ? "cremes-large" : ""}`}
+      >
         <div className="tv-colonne">
           <h2>Crèmes Glacées</h2>
 
-          <ul className="tv-liste-glaces">
+          <ul className={`tv-liste-glaces ${classeColonnes(cremes)}`}>
             {cremes.map((glace) => (
-              <li key={glace.id_glace}>{glace.nom_glace}</li>
+              <li key={glace.id_glace}>
+                {glace.nom_glace}
+
+                {Number(glace.bio) !== 1 && (
+                  <span className="mention-non-bio"> Non BIO</span>
+                )}
+              </li>
             ))}
           </ul>
-        </div>
-
-        <div className="tv-centre">
-          <p>
-            En cornet
-            <br />
-            Ou
-            <br />
-            en pot ?
-          </p>
         </div>
 
         <div className="tv-colonne">
           <h2>Sorbets</h2>
 
-          <ul className="tv-liste-glaces">
+          <ul className={`tv-liste-glaces ${classeColonnes(sorbets)}`}>
             {sorbets.map((glace) => (
-              <li key={glace.id_glace}>{glace.nom_glace}</li>
+              <li key={glace.id_glace}>
+                {glace.nom_glace}
+
+                {Number(glace.bio) !== 1 && (
+                  <span className="mention-non-bio"> Non BIO</span>
+                )}
+              </li>
             ))}
           </ul>
         </div>
       </section>
 
       <section className="tv-bas">
+        <div className="tv-centre">
+          <p>En pot ou en cornet ?</p>
+          <p>Possibilité de cornet sans gluten</p>
+        </div>
+
         <div className="tv-emporter">
           <p>Large choix de ½ litre à emporter</p>
           <p>12,00 € le pot</p>

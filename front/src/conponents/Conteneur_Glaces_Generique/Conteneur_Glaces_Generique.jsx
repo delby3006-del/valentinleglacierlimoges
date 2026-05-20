@@ -101,9 +101,17 @@ export default function ConteneurGlaces({
                   onChange={() => toggleGlace(glace.id_glace, glace.actif)}
                 />
                 {glace.nom_glace}
+                {Number(glace.bio) !== 1 && (
+                  <span className="mention-non-bio"> Non BIO</span>
+                )}
               </label>
             ) : (
-              glace.nom_glace
+              <>
+                {glace.nom_glace}
+                {Number(glace.bio) !== 1 && (
+                  <span className="mention-non-bio"> Non BIO</span>
+                )}
+              </>
             )}
           </li>
         ))}

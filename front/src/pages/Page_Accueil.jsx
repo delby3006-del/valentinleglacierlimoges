@@ -9,6 +9,7 @@ import Conteneur_Gourmandises from "../conponents/Conteneur_Gourmandises/Contene
 import Conteneur_Boissons from "../conponents/Conteneur_Boissons/Conteneur_Boissons";
 import Header from "../conponents/Haeder/Header";
 import Footer from "../conponents/Footer/Footer";
+import BoutonRetourHaut from "../conponents/Bouton_retour_header/Bouton_Retour_Header";
 import { useEffect } from "react";
 
 export default function Page_accueil() {
@@ -27,6 +28,7 @@ export default function Page_accueil() {
       <Conteneur_Gourmandises />
       <Conteneur_Boissons />
       <Footer />
+      <BoutonRetourHaut />;
     </div>
   );
 }

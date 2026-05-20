@@ -78,6 +78,35 @@
   }
 }
 
+@media screen and (max-width: 1300px) {
+  .logo-valentin {
+    width: 110px;
+    position: absolute;
+    left: 30px;
+    top: -22px;
+    z-index: 30;
+  }
+  .logo-valentin img {
+    width: 170%;
+    height: auto;
+    display: block;
+  }
+  .nav {
+    padding-left: 230px;
+    padding-right: 20px;
+    gap: 22px;
+
+    a {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 16px;
+      padding: 12px 16px;
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .barre-nav {
     min-height: 125px;
@@ -87,13 +116,13 @@
   }
 
   .logo-valentin {
-    width: 135px;
+    width: 115px;
     top: 10px;
     left: 15px;
   }
 
   .logo-valentin img {
-    width: 100%;
+    width: 130%;
     height: auto;
     display: block;
   }

@@ -1,0 +1,52 @@
+.bouton-retour-haut {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--color-encadrement);
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateY(20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  z-index: 999;
+
+  &:hover {
+    transform: translateY(0) scale(1.08);
+  }
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bouton-retour-haut {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
