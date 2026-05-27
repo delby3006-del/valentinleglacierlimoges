@@ -55,6 +55,7 @@
   }
 }
 
+
 .tv-prix {
   color: #6174aa;
   display: grid;
@@ -64,15 +65,15 @@
 
   p {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 550;
   }
 
   span {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-top: 0.3rem;
-    color: #509d98;
+    color: #c52148;
   }
 }
 
@@ -187,6 +188,16 @@
   gap: 2rem;
 }
 
+.tv-logo-terrea-delice {
+  width: 120px;
+  height: auto;
+  margin-left: 4rem;
+}
+.tv-qrcode {
+  width: 100px;
+  height: auto;
+}
+
 .tv-centre {
   text-align: center;
   font-size: 1rem;
@@ -197,7 +208,7 @@
 
 .tv-emporter {
   border: 4px solid red;
-  border-radius: 15%;
+  border-radius: 3cm;
   padding: 1rem 2rem;
   font-size: 1rem;
   text-align: center;
@@ -211,7 +222,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.2rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 

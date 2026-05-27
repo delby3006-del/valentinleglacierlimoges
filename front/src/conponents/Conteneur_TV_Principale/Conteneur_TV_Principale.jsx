@@ -215,6 +215,16 @@ export default function Conteneur_TV_Principale() {
   </div>
 </section>
       <section className="tv-bas">
+        <img
+          className="tv-qrcode"
+          src="/images/qrcode_standard2.png"
+          alt="reste qrcode"
+        />
+        <img
+          className="tv-logo-terrea-delice"
+          src="/images/logo_terreadelice.png"
+          alt="logo Terre de délice, fournisseur de glaces pour Valentin le glacier"
+        />
         <div className="tv-centre">
           <p>En pot ou en cornet ?</p>
           <p>Possibilité de cornet sans gluten</p>
