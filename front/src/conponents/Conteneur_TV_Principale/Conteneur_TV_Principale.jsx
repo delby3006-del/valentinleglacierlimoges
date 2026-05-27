@@ -56,6 +56,35 @@ export default function Conteneur_TV_Principale() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    let wakeLock = null;
+
+    const activerWakeLock = async () => {
+      try {
+        if ("wakeLock" in navigator) {
+          wakeLock = await navigator.wakeLock.request("screen");
+          console.log("Wake Lock activé");
+        }
+      } catch (err) {
+        console.error("Erreur Wake Lock :", err);
+      }
+    };
+
+    activerWakeLock();
+
+    const interval = setInterval(() => {
+      window.dispatchEvent(new Event("mousemove"));
+    }, 30000);
+
+    return () => {
+      clearInterval(interval);
+
+      if (wakeLock) {
+        wakeLock.release();
+      }
+    };
+  }, []);
+
   if (loading) return <p>Chargement...</p>;
   if (erreur) return <p>{erreur}</p>;
 
@@ -120,7 +149,17 @@ export default function Conteneur_TV_Principale() {
             {cremes.map((glace) => (
               <li key={glace.id_glace}>
                 <span className="tv-nom-glace">
-                  {glace.nom_glace}
+                  {glace.nom_glace === "Citronnelle fleur de Pois" ? (
+                    <>
+                      Citronnelle
+                      <br />
+                      <span className="tv-petit-texte">
+                        fleur de Pois
+                      </span>
+                    </>
+                  ) : (
+                    glace.nom_glace
+                  )}
 
                   {Number(glace.bio) !== 1 && (
                     <span className="tv-mention-non-bio"> Non BIO</span>
@@ -155,7 +194,17 @@ export default function Conteneur_TV_Principale() {
             {sorbets.map((glace) => (
               <li key={glace.id_glace}>
                 <span className="tv-nom-glace">
-                  {glace.nom_glace}
+                  {glace.nom_glace === "Citronnelle fleur de Pois" ? (
+                    <>
+                      Citronnelle
+                      <br />
+                      <span className="tv-petit-texte">
+                        fleur de Pois
+                      </span>
+                    </>
+                  ) : (
+                    glace.nom_glace
+                  )}
 
                   {Number(glace.bio) !== 1 && (
                     <span className="tv-mention-non-bio"> Non BIO</span>
@@ -183,48 +232,52 @@ export default function Conteneur_TV_Principale() {
           </ul>
         </div>
       </section>
-<section className="tv-legende-allergenes">
-  <div className="legende-item">
-    <span className="tv-allergene-rond allergene-lait"></span>
-    <p>Lait</p>
-  </div>
 
-  <div className="legende-item">
-    <span className="tv-allergene-rond allergene-oeufs"></span>
-    <p>Œufs</p>
-  </div>
+      <section className="tv-legende-allergenes">
+        <div className="legende-item">
+          <span className="tv-allergene-rond allergene-lait"></span>
+          <p>Lait</p>
+        </div>
 
-  <div className="legende-item">
-    <span className="tv-allergene-rond allergene-fruits-a-coque"></span>
-    <p>Fruits à coque</p>
-  </div>
+        <div className="legende-item">
+          <span className="tv-allergene-rond allergene-oeufs"></span>
+          <p>Œufs</p>
+        </div>
 
-  <div className="legende-item">
-    <span className="tv-allergene-rond allergene-arachides"></span>
-    <p>Arachides</p>
-  </div>
+        <div className="legende-item">
+          <span className="tv-allergene-rond allergene-fruits-a-coque"></span>
+          <p>Fruits à coque</p>
+        </div>
 
-  <div className="legende-item">
-    <span className="tv-allergene-rond allergene-gluten"></span>
-    <p>Gluten</p>
-  </div>
+        <div className="legende-item">
+          <span className="tv-allergene-rond allergene-arachides"></span>
+          <p>Arachides</p>
+        </div>
 
-  <div className="legende-item">
-    <span className="tv-allergene-rond allergene-sesame"></span>
-    <p>Sésame</p>
-  </div>
-</section>
+        <div className="legende-item">
+          <span className="tv-allergene-rond allergene-gluten"></span>
+          <p>Gluten</p>
+        </div>
+
+        <div className="legende-item">
+          <span className="tv-allergene-rond allergene-sesame"></span>
+          <p>Sésame</p>
+        </div>
+      </section>
+
       <section className="tv-bas">
         <img
           className="tv-qrcode"
           src="/images/qrcode_standard2.png"
           alt="reste qrcode"
         />
+
         <img
           className="tv-logo-terrea-delice"
           src="/images/logo_terreadelice.png"
           alt="logo Terre de délice, fournisseur de glaces pour Valentin le glacier"
         />
+
         <div className="tv-centre">
           <p>En pot ou en cornet ?</p>
           <p>Possibilité de cornet sans gluten</p>
