@@ -11,8 +11,8 @@ const db = isProduction
   : new Pool({
       user: "postgres",
       host: "localhost",
-      database: "valentinleglacierlimoges",
-      password: "GOGO12",
+      database: "valentinleglacier",
+      password: "gogo12",
       port: 5432,
       ssl: false,
     });

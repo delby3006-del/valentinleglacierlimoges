@@ -60,8 +60,23 @@ export default function Conteneur_TV_Principale() {
 
   return (
     <main className="tv-page">
+      <img className="image-glace"
+        src="/images/glace3B.png"
+        alt="glace 3 boules"
+      />
       <section className="tv-header">
+
+        <img
+        className="tv-logo-valentin"
+        src="/images/logo_valentin.png"
+        alt="logo Valentin le glacier"
+      />
         <h1>Notre sélection de parfums</h1>
+        <img
+        className="tv-logo-bio"
+        src="/images/logo_bio.png"
+        alt="logo agriculture biologique"
+      />
       </section>
 
       <section className="tv-prix">
@@ -103,7 +118,7 @@ export default function Conteneur_TV_Principale() {
                 {glace.nom_glace}
 
                 {Number(glace.bio) !== 1 && (
-                  <span className="mention-non-bio"> Non BIO</span>
+                  <span className="tv-mention-non-bio"> Non BIO</span>
                 )}
               </li>
             ))}

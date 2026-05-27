@@ -1,4 +1,9 @@
-.env
+backend/node_modules
+front/node_modules
+
+front/dist
+
 backend/.env
 front/.env
-node_modules/
+front/.env.development
+front/.env.production
