@@ -86,7 +86,7 @@ export default function Conteneur_TV_Principale() {
       <section className="tv-prix">
         <p>
           1 boule
-          <span>3,60 €</span>
+          <span>3,70 €</span>
         </p>
 
         <p>
@@ -96,17 +96,17 @@ export default function Conteneur_TV_Principale() {
 
         <p>
           3 boules
-          <span>7,70 €</span>
+          <span>7,90 €</span>
         </p>
 
         <p>
           Milkshake
-          <span>6,70 €</span>
+          <span>6,80 €</span>
         </p>
 
         <p>
           + chantilly maison
-          <span>1,30 €</span>
+          <span>1,40 €</span>
         </p>
       </section>
 
