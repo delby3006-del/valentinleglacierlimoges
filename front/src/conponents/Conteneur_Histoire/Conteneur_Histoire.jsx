@@ -16,10 +16,10 @@ export default function Conteneur_Histoire() {
           <h3 className="sous-titre-conteneur-histoire">Notre histoire</h3>
           <p className="Notre-histoire">
             Dans le domaine du commerce depuis 1992, une nouvelle opportunité
-            c'est ouverte a moi, j'ai donc fait une reconversion professionnelle
-            et en juillet 2018 la boutique “Valentin le glacier" à Limoges a vus
-            le jour. A la recherche de fournisseur de crème glacées et de
-            sorbets BIO, nous avons decouvert “terre adélice”.
+            s'est ouverte à moi : j'ai donc fait une reconversion professionnelle,
+            et en juillet 2018, la boutique “Valentin le glacier" à Limoges a vu
+            le jour. A la recherche de fournisseurs de crèmes glacées et de
+            sorbets BIO, nous avons découvert “Terre adélice”.
           </p>
           <hr className="separateur-histoire" />
         </div>
@@ -31,14 +31,14 @@ export default function Conteneur_Histoire() {
           alt="Logo terre adélice"
         />
         <div className="text-conteneur-histoire">
-          <h3 className="sous-titre-conteneur-histoire">Terra Délice</h3>
+          <h3 className="sous-titre-conteneur-histoire">Terre adélice</h3>
           <p className="Notre-histoire">
             Terre adélice est une entreprise engagée pour la préservation de
             l’environnement et la valorisation de l’humain au cœur de son
             activité. Cet engagement se traduit au quotidien par des actes
             concrets : choix de l’agriculture biologique, coopération avec des
             producteurs locaux, écoconception des emballages, utilisation
-            d’électricité 100 % renouvelable, réduction des déchets.
+            d’électricité 100 % renouvelable, et réduction des déchets.
           </p>
           <hr className="separateur-histoire" />
         </div>
