@@ -142,51 +142,47 @@ export default function Conteneur_TV_Principale() {
       <section
         className={`tv-contenu ${cremes.length >= 24 ? "cremes-large" : ""}`}
       >
-        <div className="tv-colonne">
-          <h2>Crèmes Glacées</h2>
+       <div className="tv-colonne">
+  <h2>
+    Crèmes Glacées
+    <span className="tv-allergene-rond allergene-lait"></span>
+  </h2>
 
-          <ul className={`tv-liste-glaces ${classeColonnes(cremes)}`}>
-            {cremes.map((glace) => (
-              <li key={glace.id_glace}>
-                <span className="tv-nom-glace">
-                  {glace.nom_glace === "Citronnelle fleur de Pois" ? (
-                    <>
-                      Citronnelle
-                      <br />
-                      <span className="tv-petit-texte">
-                        fleur de Pois
-                      </span>
-                    </>
-                  ) : (
-                    glace.nom_glace
-                  )}
+  <ul className={`tv-liste-glaces ${classeColonnes(cremes)}`}>
+    {cremes.map((glace) => (
+      <li key={glace.id_glace}>
+        <span className="tv-nom-glace">
+         {glace.nom_glace}
+          {Number(glace.bio) !== 1 && (
+            <span className="tv-mention-non-bio"> Non BIO</span>
+          )}
+        </span>
 
-                  {Number(glace.bio) !== 1 && (
-                    <span className="tv-mention-non-bio"> Non BIO</span>
-                  )}
-                </span>
-
-                {glace.allergenes?.length > 0 && (
-                  <span className="tv-allergenes">
-                    {glace.allergenes.map((allergene) => (
-                      <span
-                        key={allergene}
-                        className={`tv-allergene-rond allergene-${allergene
-                          .toLowerCase()
-                          .normalize("NFD")
-                          .replace(/[\u0300-\u036f]/g, "")
-                          .replace(/\s+/g, "-")
-                          .replace(/œ/g, "oe")}`}
-                        title={allergene}
-                      />
-                    ))}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-
+        {glace.allergenes?.length > 0 && (
+          <span className="tv-allergenes">
+            {glace.allergenes
+              .filter(
+                (allergene) =>
+                  allergene.toLowerCase() !== "lait"
+              )
+              .map((allergene) => (
+                <span
+                  key={allergene}
+                  className={`tv-allergene-rond allergene-${allergene
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .replace(/\s+/g, "-")
+                    .replace(/œ/g, "oe")}`}
+                  title={allergene}
+                />
+              ))}
+          </span>
+        )}
+      </li>
+    ))}
+  </ul>
+</div>
         <div className="tv-colonne">
           <h2>Sorbets</h2>
 
@@ -199,7 +195,7 @@ export default function Conteneur_TV_Principale() {
                       Citronnelle
                       <br />
                       <span className="tv-petit-texte">
-                        fleur de Pois
+                        (fleur de Pois)
                       </span>
                     </>
                   ) : (

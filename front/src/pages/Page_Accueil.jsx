@@ -28,7 +28,7 @@ export default function Page_accueil() {
       <Conteneur_Gourmandises />
       <Conteneur_Boissons />
       <Footer />
-      <BoutonRetourHaut />;
+      <BoutonRetourHaut />
     </div>
   );
 }

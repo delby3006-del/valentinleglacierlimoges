@@ -42,17 +42,16 @@
 
 @media screen and (max-width: 600px) {
   .conteneur-glaces-liste {
-    column-count: 1;
-    column-width: auto;
-    width: 100%;
-    text-align: center;
-  }
+  column-count: 1;
+  width: fit-content;
+  margin: 0 auto; // centre le bloc
+  text-align: left;
+}
 
-  .conteneur-glaces-liste li {
-    width: 100%;
-    font-size: 17px;
-    margin-bottom: 14px;
-  }
+.conteneur-glaces-liste li {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
 }
 .mention-non-bio {
   margin-left: 0.4rem;

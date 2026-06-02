@@ -35,5 +35,5 @@ export default function BoutonRetourHaut() {
     >
       <FaArrowUp />
     </button>
-  );
+  )
 }
