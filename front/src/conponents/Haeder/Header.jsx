@@ -17,7 +17,7 @@ export default function Header({ mode = "site" }) {
         <div className="header-coordonnee">
           <Coordonnees showTelephone={false} />
           <p className="info-header">
-            🌿 Glaces & Sorbets 100% BIO · Artisanaux
+            🌿 Glaces & Sorbets BIO · Artisanal
           </p>
           <Coordonnees showAdresse={false} />
         </div>
@@ -86,7 +86,7 @@ export default function Header({ mode = "site" }) {
             </>
           )}
 
-          <p>🌿 100% BIO</p>
+          <p>BIO</p>
           <Link to={mode === "admin" ? "/" : "/login"}>
             <FaLock className="cadena-fermer" />
           </Link>

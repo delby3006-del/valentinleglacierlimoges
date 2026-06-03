@@ -11,7 +11,7 @@ export default function Conteneur_Presentation_Text() {
       <div className="description-presentation-container">
         <h2 className="description-presentation">
           Des glaces & sorbets <br className="description-secondary" />
-          100% biologiques & artisanales
+          biologiques & artisanales
         </h2>
         <img
           className="logo-terreadelice"
@@ -35,7 +35,7 @@ export default function Conteneur_Presentation_Text() {
         <div className="info-coordonnees">
           <Coordonnees showTelephone={false} />
           <Coordonnees showAdresse={false} />
-          <p>AB · 100% Bio Artisanal</p>
+          <p>AB · Artisanal</p>
         </div>
       </div>
     </div>

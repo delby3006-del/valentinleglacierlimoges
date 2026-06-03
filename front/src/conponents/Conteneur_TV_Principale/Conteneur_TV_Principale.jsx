@@ -183,6 +183,7 @@ export default function Conteneur_TV_Principale() {
     ))}
   </ul>
 </div>
+<div class="separateur"></div>
         <div className="tv-colonne">
           <h2>Sorbets</h2>
 
@@ -193,10 +194,6 @@ export default function Conteneur_TV_Principale() {
                   {glace.nom_glace === "Citronnelle fleur de Pois" ? (
                     <>
                       Citronnelle
-                      <br />
-                      <span className="tv-petit-texte">
-                        (fleur de Pois)
-                      </span>
                     </>
                   ) : (
                     glace.nom_glace
@@ -258,6 +255,10 @@ export default function Conteneur_TV_Principale() {
         <div className="legende-item">
           <span className="tv-allergene-rond allergene-sesame"></span>
           <p>Sésame</p>
+        </div>
+        <div className="legende-item">
+          <span className="tv-allergene-rond allergene-soja"></span>
+          <p>Soja</p>
         </div>
       </section>
 

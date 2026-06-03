@@ -82,6 +82,7 @@
   justify-content: space-evenly;
   align-items: flex-start;
   width: 100%;
+  max-height: 600px;
   padding-right: 0.5rem;
   box-sizing: border-box;
   gap: 8rem;
@@ -115,6 +116,7 @@
   column-gap: 2.5rem;
   width: max-content;
   max-width: 100%;
+  max-height: 400px;
 
   &.colonnes-2 {
     columns: 2;
@@ -128,7 +130,7 @@
   li {
     font-size: clamp(1rem, 1.7vw, 1.2rem);
     line-height: 1.2;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.5rem;
     break-inside: avoid;
     white-space: nowrap;
   }
@@ -171,7 +173,7 @@
 }
 
 .allergene-fruits-a-coque {
-  background-color: blueviolet;
+  background-color: rgb(164, 36, 181);
 }
 
 .allergene-arachides {
@@ -179,11 +181,15 @@
 }
 
 .allergene-gluten {
-  background-color: rgb(87, 87, 201);
+  background-color: rgb(124, 124, 203);
 }
 
 .allergene-sesame {
   background-color: green;
+}
+
+.allergene-soja {
+  background-color: #6e826e;
 }
 
 .tv-bas {
@@ -215,8 +221,9 @@
 .tv-emporter {
   border: 4px solid red;
   border-radius: 3cm;
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   text-align: center;
 
   p {
@@ -228,7 +235,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.2rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -250,4 +257,9 @@
 .tv-colonne h2 .tv-allergene-rond {
   margin-left: 0.5rem;
   vertical-align: middle;
+}
+.separateur {
+  width: 1px;
+  height: 400px;
+  background-color: #ccc;
 }
