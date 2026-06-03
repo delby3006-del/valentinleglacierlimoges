@@ -183,7 +183,6 @@ export default function Conteneur_TV_Principale() {
     ))}
   </ul>
 </div>
-<div class="separateur"></div>
         <div className="tv-colonne">
           <h2>Sorbets</h2>
 
