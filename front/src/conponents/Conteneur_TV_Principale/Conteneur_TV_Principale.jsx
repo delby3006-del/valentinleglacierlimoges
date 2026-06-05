@@ -261,11 +261,10 @@ export default function Conteneur_TV_Principale() {
         </div>
       </section>
 
-      <section className="tv-bas">
-        <img
-          className="tv-qrcode"
-          src="/images/qrcode_standard2.png"
-          alt="reste qrcode"
+      <section className="tv-bas"> 
+        <img className="tv-qrcode"
+          src="/images/qrcode_ecran1.png"
+          alt="QR code pour accéder au menu de Valentin le glacier sur votre téléphone"
         />
 
         <img
