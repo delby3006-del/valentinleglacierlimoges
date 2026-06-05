@@ -14,21 +14,21 @@ export default function MentionsLegales() {
             40 rue Jean Jaurès<br />
             87000 Limoges<br />
             Téléphone : 05 55 57 47 33<br />
-            SIRET : [à compléter]<br />
-            Email : [à compléter]
+            SIRET : 83408741300011<br />
+            Email : valentinleglacier@orange.fr
           </p>
         </article>
 
         <article>
           <h2>Directeur de la publication</h2>
-          <p>Le directeur de la publication est : [nom du responsable / gérant].</p>
+          <p>Le directeur de la publication est : Corinne Debenest</p>
         </article>
 
         <article>
           <h2>Hébergement</h2>
           <p>
-            Nom de l’hébergeur : [Railway / OVH / autre]<br />
-            Site internet : [URL de l’hébergeur]
+            Nom de l’hébergeur : Railway<br />
+            Site internet : https://railway.app
           </p>
         </article>
 
