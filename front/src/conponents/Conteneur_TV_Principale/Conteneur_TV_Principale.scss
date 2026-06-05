@@ -1,10 +1,15 @@
 .tv-page {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   background: linear-gradient(#dca983, #ece1ab);
   color: var(--color-background);
   padding: 1rem 2rem;
   font-family: "Comic Sans MS", "DM Sans", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .tv-header,
@@ -82,7 +87,10 @@
   justify-content: space-evenly;
   align-items: flex-start;
   width: 100%;
-  max-height: 600px;
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
   padding-right: 0.5rem;
   box-sizing: border-box;
   gap: 8rem;
@@ -103,7 +111,7 @@
   h2 {
     text-align: center;
     font-size: 1.5rem;
-    margin: 1rem 0 1rem;
+     margin: 0.3rem 0 0.5rem;
     text-decoration: underline;
     font-style: italic;
   }
@@ -133,13 +141,12 @@
     margin-bottom: 0.4rem;
     break-inside: avoid;
     white-space: nowrap;
-    font-weight: 600;
-    color: black;
+    color: var(--color-background);
   }
 
   .tv-mention-non-bio {
     font-size: 0.6rem;
-    color: rgb(246, 16, 16);
+    color: rgb(200, 53, 53);
     margin-left: 0.2rem;
   }
 }
@@ -195,21 +202,21 @@
 }
 
 .tv-bas {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.3rem;
-  gap: 2rem;
+  margin-top: 0;
+  gap: 1rem;     
+  margin-bottom: -0.5rem;
+}
+
+.tv-qrcode {
+  width: 85px; // 100px
 }
 
 .tv-logo-terrea-delice {
-  width: 120px;
-  height: auto;
-  margin-left: 4rem;
-}
-.tv-qrcode {
-  width: 100px;
-  height: auto;
+  width: 100px; // 120px
 }
 
 .tv-centre {
@@ -236,9 +243,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.2rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-top: 0.3rem; 
+  margin-bottom: 0.8rem; 
 }
 
 .legende-item {
