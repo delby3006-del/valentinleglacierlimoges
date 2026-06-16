@@ -63,7 +63,6 @@ export default function Conteneur_TV_Principale() {
       try {
         if ("wakeLock" in navigator) {
           wakeLock = await navigator.wakeLock.request("screen");
-          console.log("Wake Lock activé");
         }
       } catch (err) {
         console.error("Erreur Wake Lock :", err);

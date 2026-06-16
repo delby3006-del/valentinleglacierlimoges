@@ -1,6 +1,4 @@
 import "./Conteneur_Glaces.scss";
-// import GlacesCremesActives from "../Conteneur_Glaces_Creme/Conteneur_Glaces_Creme";
-// import GlacesSorbetActives from "../Conteneur_Glaces_Sorbet/Conteneur_Glaces_Sorbet";
 import ConteneurGlaces from "../Conteneur_Glaces_Generique/Conteneur_Glaces_Generique";
 
 export default function Conteneur_Glaces() {

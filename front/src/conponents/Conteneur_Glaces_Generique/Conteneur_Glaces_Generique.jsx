@@ -66,7 +66,7 @@ export default function ConteneurGlaces({
         }),
       });
       const data = await response.json();
-      console.log("Réponse du serveur :", data);
+      // console.log("Réponse du serveur :", data);
 
       if (!response.ok || !data.succes) {
         throw new Error(data.erreur || "Erreur mise à jour");

@@ -15,7 +15,7 @@ export default function Conteneur_Gourmandises_Generique({ admin = false }) {
       }
 
       const data = await res.json();
-      console.log("Données gourmandises :", data);
+      // console.log("Données gourmandises :", data);
       setGourmandises(data);
     } catch (error) {
       console.error("Erreur gourmandises :", error);
