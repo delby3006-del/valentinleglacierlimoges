@@ -6,7 +6,7 @@ export default function Conteneur_Presentation_Images() {
       <div className="deuxieme-font-image-glace"></div>
       <div className="troisieme-font-image-glace"></div>
       <img
-        src="/images/glace3B.png"
+        src="/images/glace3B2.png"
         alt="Glace 3 boules de différentes saveurs"
         className="image-presentation"
       />

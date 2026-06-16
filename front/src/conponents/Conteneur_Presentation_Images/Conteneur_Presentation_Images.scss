@@ -33,7 +33,7 @@ $tablette: 1024px;
     }
 
     .image-presentation {
-      width: clamp(330px, 30vw, 430px);
+      width: clamp(210px, 25vw, 130px);
       height: auto;
       position: relative;
       z-index: 2;
@@ -49,7 +49,7 @@ $tablette: 1024px;
   }
 
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-25px);
   }
 
   100% {
