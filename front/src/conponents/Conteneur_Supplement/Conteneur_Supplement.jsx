@@ -51,11 +51,11 @@ export default function Conteneur_Supplements() {
 
   return (
     <section className="section-supplements-saison">
-      <h3 className="titre-supplements-saison">Les suppléments de saison</h3>
+      <h2 className="titre-supplements-saison">Les suppléments de saison</h2>
 
       <div className="conteneur-supplements-saison">
         <div className="bloc-supplement-saison">
-          <h4 className="titre-bloc-supplement">Nos Glaces Italiennes</h4>
+          <h3 className="titre-bloc-supplement">Nos Glaces Italiennes</h3>
 
           <div className="carte-supplement-saison">
             <Conteneur_Italiennes_Generique version="supplement" />
@@ -63,7 +63,7 @@ export default function Conteneur_Supplements() {
         </div>
 
         <div className="bloc-supplement-saison">
-          <h4 className="titre-bloc-supplement">Nos Granités</h4>
+          <h3 className="titre-bloc-supplement">Nos Granités</h3>
 
           <div className="carte-supplement-saison">
             <Conteneur_Granites_Generique version="supplement" />

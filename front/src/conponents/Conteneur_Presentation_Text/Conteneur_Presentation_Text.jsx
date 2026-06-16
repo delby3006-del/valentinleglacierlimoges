@@ -6,7 +6,7 @@ export default function Conteneur_Presentation_Text() {
     <div className="conteneur-presentation-text">
       <h1 className="titre-presentation">
         Valentin <br />
-        <span className="titre-secondary">le glacier</span>
+        <small className="titre-secondary">le glacier</small>
       </h1>
       <div className="description-presentation-container">
         <h2 className="description-presentation">

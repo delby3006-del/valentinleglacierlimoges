@@ -88,7 +88,8 @@ export default function Header({ mode = "site" }) {
 
           <p>BIO</p>
           <Link to={mode === "admin" ? "/" : "/login"}>
-            <FaLock className="cadena-fermer" />
+            <FaLock className="cadena-fermer"
+            alt="Se connecter" />
           </Link>
         </nav>
       </div>

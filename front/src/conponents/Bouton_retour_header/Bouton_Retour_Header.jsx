@@ -31,6 +31,7 @@ export default function BoutonRetourHaut() {
   return (
     <button
       className={`bouton-retour-haut ${visible ? "visible" : ""}`}
+      alt="Retour en haut de la page"
       onClick={retourHaut}
     >
       <FaArrowUp />
