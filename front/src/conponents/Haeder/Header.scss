@@ -42,7 +42,7 @@
 }
 
 .logo-valentin {
-  width: 230px;
+  width: 200px;
   position: absolute;
   left: 30px;
   top: -22px;
@@ -78,7 +78,7 @@
   }
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (min-width: 1024px) {
   .logo-valentin {
     width: 110px;
     position: absolute;

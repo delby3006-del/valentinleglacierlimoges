@@ -27,8 +27,9 @@
 .titre-bloc-supplement {
   background-color: var(--color-text);
   color: var(--color-background);
+  border: 5px solid var(--color-encadrement);
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 55px;
   font-size: 20px;
   margin: 0 auto 25px;
 }

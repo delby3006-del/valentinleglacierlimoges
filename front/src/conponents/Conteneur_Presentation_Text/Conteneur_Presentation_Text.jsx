@@ -24,7 +24,6 @@ export default function Conteneur_Presentation_Text() {
         façonnées artisanalement, avec des ingrédients certifiés bio
         soigneusement choisis.
       </p>
-      <button className="btn-decouvrir">Voir notre carte</button>
       <div className="separateur"></div>
       <div className="info-lieux">
         <div className="divers">
