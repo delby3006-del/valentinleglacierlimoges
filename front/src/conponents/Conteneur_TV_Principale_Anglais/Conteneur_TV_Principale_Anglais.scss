@@ -1,0 +1,299 @@
+@font-face {
+  font-family: "Fuzzy";
+  src: url("/fonts/FuzzyBubbles-Regular.ttf") format("truetype");
+  font-weight: 400;
+    font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fuzzy";
+  src: url("/fonts/FuzzyBubbles-Bold.ttf") format("truetype");
+  font-weight: 700;
+    font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("/fonts/Fredoka-VariableFont_wdth,wght.ttf") format("truetype");
+  font-weight: 400;
+    font-style: normal;
+  font-display: swap;
+}
+
+
+.tv-page-anglais {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(#dca983, #ece1ab);
+  color: var(--color-background);
+  padding: 1rem 2rem;
+  font-family: "Fredoka", "Fuzzy", Arial, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.tv-header,
+.tv-prix,
+.tv-contenu-anglais,
+.tv-bas {
+  position: relative;
+  z-index: 2;
+}
+
+.image-glace {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.tv-header {
+  position: relative;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    margin-top: -1rem;
+  }
+
+  .tv-logo-bio {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 60px;
+    height: auto;
+  }
+
+  .tv-logo-valentin {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 100px;
+    height: auto;
+  }
+}
+
+
+.tv-prix {
+  color: #6174aa;
+  display: grid;
+  grid-template-columns: 180px 180px 180px 220px 260px;
+  justify-content: center;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  span {
+    display: block;
+    font-size: 1.4rem;
+    margin-top: 0.3rem;
+    color: #c52148;
+  }
+}
+
+.tv-contenu-anglais {
+  display: flex;
+  justify-content: space-evenly;
+
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+  gap: 8rem;
+  padding-left: 0.5rem;
+}
+
+
+
+.tv-contenu-anglais.cremes-large {
+  gap: 3rem;
+}
+
+.tv-colonne {
+  flex: 1;
+  max-width: 600px;
+  min-width: 0;
+
+  h2 {
+    text-align: center;
+    font-size: 1.8rem;
+     margin: 0.3rem 0 0.8rem;
+    text-decoration: underline;
+    font-style: italic;
+  }
+}
+
+.tv-liste-glaces {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  column-gap: 2.5rem;
+  width: max-content;
+  max-width: 100%;
+  max-height: 450px;
+
+  &.colonnes-2 {
+    columns: 2;
+  }
+
+  &.colonnes-3 {
+    columns: 3;
+    column-gap: 1rem;
+  }
+
+  li {
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+    break-inside: avoid;
+    white-space: nowrap;
+    color: var(--color-background);
+  }
+
+  .tv-mention-non-bio {
+    font-size: 0.6rem;
+    color: rgb(200, 53, 53);
+    margin-left: 0.2rem;
+  }
+}
+
+.tv-nom-glace {
+  display: inline-block;
+}
+
+.tv-allergenes {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+.tv-allergene-rond {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Couleurs par allergène */
+.allergene-lait {
+  background-color: rgb(240, 240, 94);
+    width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.allergene-oeufs {
+  background-color: orange;
+}
+
+.allergene-fruits-a-coque {
+  background-color: rgb(164, 36, 181);
+}
+
+.allergene-arachides {
+  background-color: deeppink;
+}
+
+.allergene-gluten {
+  background-color: rgb(124, 124, 203);
+}
+
+.allergene-sesame {
+  background-color: green;
+}
+
+.allergene-soja {
+  background-color: #6e826e;
+}
+
+.tv-bas {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  gap: 1rem;     
+  margin-bottom: -0.5rem;
+}
+
+.tv-qrcode {
+  width: 85px;
+}
+
+.tv-logo-terrea-delice {
+  width: 100px; 
+}
+
+.tv-centre {
+  text-align: center;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 700;
+  flex: 1;
+}
+
+.tv-emporter {
+  border: 4px solid red;
+  border-radius: 3cm;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+
+  p {
+    margin: 0.2rem 0;
+  }
+}
+.tv-legende-allergenes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.3rem; 
+  margin-bottom: 0.8rem; 
+}
+
+.legende-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+.tv-petit-texte {
+  font-size: 0.9rem;
+}
+
+.tv-colonne h2 .tv-allergene-rond {
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+// .separateur {
+//   width: 1px;
+//   height: 400px;
+//   background-color: #ccc;
+// }
