@@ -143,28 +143,27 @@
 }
 
 .tv-liste-glaces {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.tv-liste-colonne {
   list-style: none;
   padding: 0;
-  margin: 0 auto;
-  column-gap: 2.5rem;
-  width: max-content;
-  max-width: 100%;
-  max-height: 450px;
-
-  &.colonnes-2 {
-    columns: 2;
-  }
-
-  &.colonnes-3 {
-    columns: 3;
-    column-gap: 1rem;
-  }
+  margin: 0;
+  flex-shrink: 1;
+  min-width: 0;
 
   li {
     font-size: 1.3rem;
     line-height: 1.2;
     margin-bottom: 0.4rem;
-    break-inside: avoid;
     white-space: nowrap;
     color: var(--color-background);
   }

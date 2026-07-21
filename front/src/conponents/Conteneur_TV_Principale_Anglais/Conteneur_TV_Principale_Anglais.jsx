@@ -8,20 +8,35 @@ export default function Conteneur_TV_Principale_Anglais() {
   const [loading, setLoading] = useState(true);
   const [erreur, setErreur] = useState("");
 
-const trierAlphabetique = (liste) => {
-  return [...liste].sort((a, b) =>
-    (a.nom_parfum_en || a.nom_glace).localeCompare(
-      b.nom_parfum_en || b.nom_glace,
-      "en",
-      {
-        sensitivity: "base",
-      },
-    ),
-  );
-};
-  const classeColonnes = (liste) => {
-    if (liste.length >= 30) return "colonnes-3";
-    return "colonnes-2";
+  const trierAlphabetique = (liste) => {
+    return [...liste].sort((a, b) =>
+      (a.nom_parfum_en || a.nom_glace).localeCompare(
+        b.nom_parfum_en || b.nom_glace,
+        "en",
+        {
+          sensitivity: "base",
+        },
+      ),
+    );
+  };
+
+  const creerColonnes = (liste, nombreParColonne = 13) => {
+    const colonnes = [];
+
+    for (let i = 0; i < liste.length; i += nombreParColonne) {
+      colonnes.push(liste.slice(i, i + nombreParColonne));
+    }
+
+    return colonnes;
+  };
+
+  const creerClasseAllergene = (allergene) => {
+    return allergene
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/œ/g, "oe")
+      .replace(/\s+/g, "-");
   };
 
   useEffect(() => {
@@ -38,11 +53,15 @@ const trierAlphabetique = (liste) => {
         const data = await res.json();
 
         setCremes(
-          trierAlphabetique(data.filter((glace) => Number(glace.id_type) === 1)),
+          trierAlphabetique(
+            data.filter((glace) => Number(glace.id_type) === 1),
+          ),
         );
 
         setSorbets(
-          trierAlphabetique(data.filter((glace) => Number(glace.id_type) === 2)),
+          trierAlphabetique(
+            data.filter((glace) => Number(glace.id_type) === 2),
+          ),
         );
       } catch (error) {
         console.error("Erreur chargement glaces TV :", error);
@@ -87,8 +106,13 @@ const trierAlphabetique = (liste) => {
     };
   }, []);
 
-  if (loading) return <p>Chargement...</p>;
-  if (erreur) return <p>{erreur}</p>;
+  if (loading) {
+    return <p>Chargement...</p>;
+  }
+
+  if (erreur) {
+    return <p>{erreur}</p>;
+  }
 
   return (
     <main className="tv-page-anglais">
@@ -136,88 +160,106 @@ const trierAlphabetique = (liste) => {
         </p>
 
         <p>
-          + Homemade Whipped Cream
+          + Whipped Cream
           <span>1,40 €</span>
         </p>
       </section>
 
       <section
-        className={`tv-contenu-anglais ${cremes.length >= 24 ? "cremes-large" : ""}`}
+        className={`tv-contenu-anglais ${
+          cremes.length >= 24 ? "cremes-large" : ""
+        }`}
       >
-       <div className="tv-colonne">
-  <h2>
-    Crèmes Glacées
-    <span className="tv-allergene-rond allergene-lait"></span>
-  </h2>
+        <div className="tv-colonne">
+          <h2>
+            Ice Cream
+            <span className="tv-allergene-rond allergene-lait"></span>
+          </h2>
 
-  <ul className={`tv-liste-glaces ${classeColonnes(cremes)}`}>
-    {cremes.map((glace) => (
-      <li key={glace.id_glace}>
-        <span className="tv-nom-glace">
-         {glace.nom_parfum_en || glace.nom_glace}
-          {Number(glace.bio) !== 1 && (
-            <span className="tv-mention-non-bio"> Non BIO</span>
-          )}
-        </span>
+          <div className="tv-liste-glaces">
+            {creerColonnes(cremes).map((colonne, indexColonne) => (
+              <ul
+                className="tv-liste-colonne"
+                key={`cremes-colonne-${indexColonne}`}
+              >
+                {colonne.map((glace) => (
+                  <li key={glace.id_glace}>
+                    <span className="tv-nom-glace">
+                      {glace.nom_parfum_en || glace.nom_glace}
 
-        {glace.allergenes?.length > 0 && (
-          <span className="tv-allergenes">
-            {glace.allergenes
-              .filter(
-                (allergene) =>
-                  allergene.toLowerCase() !== "lait"
-              )
-              .map((allergene) => (
-                <span
-                  key={allergene}
-                  className={`tv-allergene-rond allergene-${allergene
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .replace(/\s+/g, "-")
-                    .replace(/œ/g, "oe")}`}
-                  title={allergene}
-                />
-              ))}
-          </span>
-        )}
-      </li>
-    ))}
-  </ul>
-</div>
+                      {Number(glace.bio) !== 1 && (
+                        <span className="tv-mention-non-bio">
+                          {" "}
+                          Not BIO
+                        </span>
+                      )}
+                    </span>
+
+                    {glace.allergenes?.length > 0 && (
+                      <span className="tv-allergenes">
+                        {glace.allergenes
+                          .filter(
+                            (allergene) =>
+                              allergene.toLowerCase() !== "lait",
+                          )
+                          .map((allergene) => (
+                            <span
+                              key={allergene}
+                              className={`tv-allergene-rond allergene-${creerClasseAllergene(
+                                allergene,
+                              )}`}
+                              title={allergene}
+                            />
+                          ))}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+
         <div className="tv-colonne">
           <h2>Sorbets</h2>
 
-          <ul className={`tv-liste-glaces ${classeColonnes(sorbets)}`}>
-            {sorbets.map((glace) => (
-              <li key={glace.id_glace}>
-                <span className="tv-nom-glace">
-                 {glace.nom_parfum_en || glace.nom_glace}
+          <div className="tv-liste-glaces">
+            {creerColonnes(sorbets).map((colonne, indexColonne) => (
+              <ul
+                className="tv-liste-colonne"
+                key={`sorbets-colonne-${indexColonne}`}
+              >
+                {colonne.map((glace) => (
+                  <li key={glace.id_glace}>
+                    <span className="tv-nom-glace">
+                      {glace.nom_parfum_en || glace.nom_glace}
 
-                  {Number(glace.bio) !== 1 && (
-                    <span className="tv-mention-non-bio"> Non BIO</span>
-                  )}
-                </span>
+                      {Number(glace.bio) !== 1 && (
+                        <span className="tv-mention-non-bio">
+                          {" "}
+                          Not BIO
+                        </span>
+                      )}
+                    </span>
 
-                {glace.allergenes?.length > 0 && (
-                  <span className="tv-allergenes">
-                    {glace.allergenes.map((allergene) => (
-                      <span
-                        key={allergene}
-                        className={`tv-allergene-rond allergene-${allergene
-                          .toLowerCase()
-                          .normalize("NFD")
-                          .replace(/[\u0300-\u036f]/g, "")
-                          .replace(/\s+/g, "-")
-                          .replace(/œ/g, "oe")}`}
-                        title={allergene}
-                      />
-                    ))}
-                  </span>
-                )}
-              </li>
+                    {glace.allergenes?.length > 0 && (
+                      <span className="tv-allergenes">
+                        {glace.allergenes.map((allergene) => (
+                          <span
+                            key={allergene}
+                            className={`tv-allergene-rond allergene-${creerClasseAllergene(
+                              allergene,
+                            )}`}
+                            title={allergene}
+                          />
+                        ))}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
@@ -249,16 +291,16 @@ const trierAlphabetique = (liste) => {
 
         <div className="legende-item">
           <span className="tv-allergene-rond allergene-sesame"></span>
-          <p>Sésame</p>
+          <p>Sesame</p>
         </div>
+
         <div className="legende-item">
           <span className="tv-allergene-rond allergene-soja"></span>
           <p>Soy</p>
         </div>
       </section>
 
-      <section className="tv-bas"> 
-       
+      <section className="tv-bas">
         <img
           className="tv-logo-terrea-delice"
           src="/images/logo_terreadelice.png"
@@ -271,8 +313,8 @@ const trierAlphabetique = (liste) => {
         </div>
 
         <div className="tv-emporter">
-          <p>Large choice of ½ liter to take away</p>
-          <p>12,00 € per pot</p>
+          <p>Large choice of ½ liter tubs to take away</p>
+          <p>12,00 € per tub</p>
           <p>(approximately 6 scoops)</p>
         </div>
       </section>
