@@ -197,7 +197,7 @@
   min-width: 0;
 
   h2 {
-    text-align: left;
+    text-align: center;
 
     font-size: 1.8rem;
 
@@ -278,7 +278,7 @@
 
 .tv-separateur {
   width: 1px;
-background: color-mix(in srgb, var(--color-background) 10%, transparent);
+background: color-mix(in srgb, var(--color-background) 5%, transparent);
 height: 30%;
   border-radius: 3px;
   margin: 0;
