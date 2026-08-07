@@ -29,6 +29,42 @@
   }
 }
 
+.image-parfum {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+.image-parfum-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-parfum-zoom {
+  display: none;
+
+  position: absolute;
+  left: 50%;
+  bottom: 120%;
+  transform: translateX(-50%);
+
+  width: 220px;
+  height: auto;
+
+  padding: 6px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+
+  z-index: 1000;
+}
+
+.image-parfum-container:hover .image-parfum-zoom {
+  display: block;
+}
+
 .checkbox {
   margin-right: 1rem;
   accent-color: var(--color-encadrement);
@@ -42,21 +78,20 @@
 
 @media screen and (max-width: 600px) {
   .conteneur-glaces-liste {
-  column-count: 1;
-  width: fit-content;
-  margin: 0 auto; // centre le bloc
-  text-align: left;
-}
+    column-count: 2;
+    column-width: auto;
+    column-gap: 1rem;
 
-.conteneur-glaces-liste li {
-  font-size: 17px;
-  margin-bottom: 14px;
-}
-}
-.mention-non-bio {
-  margin-left: 0.4rem;
-  font-size: 0.9rem;
-  font-style: italic;
-  font-weight: 600;
-  color: red;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .conteneur-glaces-liste li {
+    width: auto;
+    font-size: 15px;
+    margin-bottom: 14px;
+    margin-left: 15px;
+  }
 }

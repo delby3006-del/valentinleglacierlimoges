@@ -278,9 +278,11 @@
 
 .tv-separateur {
   width: 1px;
-background: color-mix(in srgb, var(--color-background) 15%, transparent);
+background: color-mix(in srgb, var(--color-background) 10%, transparent);
+height: 30%;
   border-radius: 3px;
   margin: 0;
+  margin-top: 100px;
 }
 
 /* =========================

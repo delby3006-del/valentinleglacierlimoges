@@ -14,7 +14,6 @@ export default function ConteneurGlaces({
   const [loading, setLoading] = useState(true);
   const [erreur, setErreur] = useState("");
 
-
   useEffect(() => {
     const chargerGlaces = async () => {
       try {
@@ -67,6 +66,7 @@ export default function ConteneurGlaces({
           actif: nouvelleValeur,
         }),
       });
+
       const data = await response.json();
       // console.log("Réponse du serveur :", data);
 
@@ -76,7 +76,9 @@ export default function ConteneurGlaces({
 
       setGlaces((prevGlaces) =>
         prevGlaces.map((glace) =>
-          glace.id_glace === id ? { ...glace, actif: nouvelleValeur } : glace,
+          glace.id_glace === id
+            ? { ...glace, actif: nouvelleValeur }
+            : glace,
         ),
       );
     } catch (error) {
@@ -88,40 +90,67 @@ export default function ConteneurGlaces({
   if (loading) return <p>Chargement...</p>;
   if (erreur) return <p>{erreur}</p>;
 
-const glacesAffichees = bioSeulement
-  ? glaces.filter((glace) => Number(glace.bio) === 1)
-  : glaces;
+  const glacesAffichees = bioSeulement
+    ? glaces.filter((glace) => Number(glace.bio) === 1)
+    : glaces;
+
+  const imagesParfums = {
+    "Fève de tonka": "/images/feve.png",
+    "Yaourt au timut": "/images/timut.png",
+    "Pomelo": "/images/pomelo.png",
+    "Main de bouddha": "/images/bouddha.png",
+  };
 
   return (
-    <div className="conteneur-glaces-colone">
-      <h3 className="titre-conteneur-glaces-type">{titre}</h3>
+    <>
+      <h2 className="titre-conteneur-glaces-type">{titre}</h2>
+
       <ul className="conteneur-glaces-liste">
         {glacesAffichees.map((glace) => (
-          <li key={glace.id_glace} className="ligne-glace">
+          <li key={glace.id_glace}>
             {afficherCheckbox ? (
-              <label>
+              <>
                 <input
                   type="checkbox"
                   className="checkbox"
                   checked={Number(glace.actif) === 1}
                   onChange={() => toggleGlace(glace.id_glace, glace.actif)}
                 />
+
                 {glace.nom_glace}
+
                 {Number(glace.bio) !== 1 && (
-                  <span className="mention-non-bio"> Non BIO</span>
+                  <span className="mention-non-bio">Non BIO</span>
                 )}
-              </label>
+              </>
             ) : (
               <>
                 {glace.nom_glace}
+
+                {imagesParfums[glace.nom_glace] && (
+                  <span className="image-parfum-container">
+                    <img
+                      src={imagesParfums[glace.nom_glace]}
+                      alt={glace.nom_glace}
+                      className="image-parfum"
+                    />
+
+                    <img
+                      src={imagesParfums[glace.nom_glace]}
+                      alt={glace.nom_glace}
+                      className="image-parfum-zoom"
+                    />
+                  </span>
+                )}
+
                 {Number(glace.bio) !== 1 && (
-                  <span className="mention-non-bio"> Non BIO</span>
+                  <span className="mention-non-bio">Non BIO</span>
                 )}
               </>
             )}
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }

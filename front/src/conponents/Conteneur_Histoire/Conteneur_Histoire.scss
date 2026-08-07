@@ -3,7 +3,36 @@
   flex-direction: column;
   align-items: center;
   font-family: "Fuzzy Bubbles";
-  background-color: var(--color-text-quaternary);
+
+  .font-image-histoire {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--color-text-quaternary);
+  }
+
+  .font-image-histoire::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-image: url("/images/photovitrine.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0.3;
+
+    z-index: 0;
+  }
+
+  .font-image-histoire > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .titre-conteneur-histoire {
@@ -58,14 +87,37 @@
 }
 
 @media screen and (max-width: 900px) {
-  .conteneur-histoire-logo { flex-direction: column; gap: 10px; text-align: center; }
-  .Notre-histoire { font-size: 20px; text-align: center; }
-  .text-conteneur-histoire { width: 90%; }
+  .conteneur-histoire-logo {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .Notre-histoire {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .text-conteneur-histoire {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .conteneur-histoire { padding: 0 1rem; }
-  .logo-conteneur-histoire { width: 100px; margin: 10px; }
-  .Notre-histoire { font-size: 18px; }
-  .separateur-histoire { width: 45%; }
+  .conteneur-histoire {
+    padding: 0 1rem;
+  }
+
+  .logo-conteneur-histoire {
+    width: 100px;
+    margin: 10px;
+  }
+
+  .Notre-histoire {
+    font-size: 18px;
+  }
+
+  .separateur-histoire {
+    width: 45%;
+  }
 }

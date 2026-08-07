@@ -3,6 +3,7 @@ import "./Conteneur_Histoire.scss";
 export default function Conteneur_Histoire() {
   return (
     <section className="conteneur-histoire" id="conteneur-histoire">
+      <div className="font-image-histoire">
       <h2 className="titre-conteneur-histoire">
         Bienvenue chez Valentin le Glacier à Limoges
       </h2>
@@ -42,6 +43,7 @@ export default function Conteneur_Histoire() {
           </p>
           <hr className="separateur-histoire" />
         </div>
+      </div>
       </div>
     </section>
   );
