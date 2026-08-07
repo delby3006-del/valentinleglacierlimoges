@@ -11,7 +11,7 @@ export default function Conteneur_Granites() {
 
   return (
     <section className="section-granites" id="section-granites">
-      <h3 className="titre-granites">Nos Granités</h3>
+      <h3 className="titre-granites">Nos Granités <img src="/images/logoeuropeenAB.png" alt="Granités" className="logo-bio-fond-vert-titre-granites" /></h3>
 
       <Conteneur_Granites_Generique onAfficherBlocChange={setAfficherBloc} />
     </section>

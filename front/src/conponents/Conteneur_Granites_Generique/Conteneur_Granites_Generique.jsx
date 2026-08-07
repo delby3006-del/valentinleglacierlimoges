@@ -40,12 +40,15 @@ export default function Conteneur_Granites_Generique({
 
   const modifierActif = async (idGranite, nouvelEtat) => {
     try {
-      const res = await fetchAdmin(`${API_URL}/api/granites/${idGranite}`, {
-        method: "PUT",
-        body: JSON.stringify({
-          actif: nouvelEtat ? 1 : 0,
-        }),
-      });
+      const res = await fetchAdmin(
+        `${API_URL}/api/granites/${idGranite}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            actif: nouvelEtat ? 1 : 0,
+          }),
+        },
+      );
 
       if (!res.ok) {
         throw new Error("Erreur modification granité");
@@ -87,11 +90,21 @@ export default function Conteneur_Granites_Generique({
     }
   };
 
+  // Granités actifs
   const granitesActifs = granites.filter(
     (granite) => Number(granite.actif) === 1,
   );
 
-  const auMoinsUnActif = granitesActifs.length > 0;
+  // Côté visiteur, on retire "Provençale"
+  const granitesVisiteur = granitesActifs.filter(
+    (granite) => granite.nom_granite !== "Provencale",
+  );
+
+  // Dans l'admin on regarde tous les actifs.
+  // Côté visiteur on ne compte pas Provençale.
+  const auMoinsUnActif = afficherCheckbox
+    ? granitesActifs.length > 0
+    : granitesVisiteur.length > 0;
 
   useEffect(() => {
     if (!afficherCheckbox && onAfficherBlocChange && chargementTermine) {
@@ -108,11 +121,17 @@ export default function Conteneur_Granites_Generique({
     return null;
   }
 
-  if (!afficherCheckbox && granitesActifs.length === 0) {
+  // Si aucun granité n'est affichable côté visiteur,
+  // le conteneur disparaît complètement.
+  if (!afficherCheckbox && granitesVisiteur.length === 0) {
     return null;
   }
 
-  const granitesAAfficher = afficherCheckbox ? granites : granitesActifs;
+  // Admin = tous les granités
+  // Visiteur = actifs sauf Provençale
+  const granitesAAfficher = afficherCheckbox
+    ? granites
+    : granitesVisiteur;
 
   return (
     <div
@@ -123,7 +142,7 @@ export default function Conteneur_Granites_Generique({
       }
     >
       {afficherCheckbox && (
-        <label className="checkbox-global-granites">
+        <>
           <input
             className="checkbox"
             type="checkbox"
@@ -131,7 +150,7 @@ export default function Conteneur_Granites_Generique({
             onChange={(e) => modifierTousLesGranites(e.target.checked)}
           />
           Activer / désactiver tous les granités
-        </label>
+        </>
       )}
 
       <ul className="liste-granites">
@@ -142,7 +161,9 @@ export default function Conteneur_Granites_Generique({
             <li
               key={granite.id_granite}
               className={
-                graniteActif ? "item-granite actif" : "item-granite inactif"
+                graniteActif
+                  ? "item-granite actif"
+                  : "item-granite inactif"
               }
             >
               {afficherCheckbox && (
@@ -151,7 +172,10 @@ export default function Conteneur_Granites_Generique({
                   type="checkbox"
                   checked={graniteActif}
                   onChange={(e) =>
-                    modifierActif(granite.id_granite, e.target.checked)
+                    modifierActif(
+                      granite.id_granite,
+                      e.target.checked,
+                    )
                   }
                 />
               )}

@@ -31,9 +31,16 @@ $tablette: 1024px;
   margin-top: 1rem;
 }
 
+.logo-bio-fond-vert {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 .description-presentation-container {
   width: 100%;
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

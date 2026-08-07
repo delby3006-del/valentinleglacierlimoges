@@ -55,7 +55,9 @@ export default function Conteneur_Supplements() {
 
       <div className="conteneur-supplements-saison">
         <div className="bloc-supplement-saison">
-          <h3 className="titre-bloc-supplement">Nos Glaces Italiennes</h3>
+          <h3 className="titre-bloc-supplement">Nos Glaces à l'Italiennes
+            <img src="/images/logoeuropeenAB.png" alt="Italiennes" className="logo-bio-fond-vert-titre-supplement" />
+          </h3>
 
           <div className="carte-supplement-saison">
             <Conteneur_Italiennes_Generique version="supplement" />
@@ -63,7 +65,9 @@ export default function Conteneur_Supplements() {
         </div>
 
         <div className="bloc-supplement-saison">
-          <h3 className="titre-bloc-supplement">Nos Granités</h3>
+          <h3 className="titre-bloc-supplement">Nos Granités
+            <img src="/images/logoeuropeenAB.png" alt="Granités" className="logo-bio-fond-vert-titre-supplement" />
+          </h3>
 
           <div className="carte-supplement-saison">
             <Conteneur_Granites_Generique version="supplement" />

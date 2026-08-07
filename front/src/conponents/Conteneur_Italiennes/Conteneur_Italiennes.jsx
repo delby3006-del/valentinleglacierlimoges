@@ -13,7 +13,9 @@ export default function Conteneur_Italiennes() {
   return (
     <section className="italienne" id="section-italiennes">
       <div className="conteneur-italiennes">
-        <h2>Nos Glace à l'Italiennes</h2>
+        <h2>Nos Glace à l'Italiennes
+          <img src="/images/logoeuropeenAB.png" alt="Italiennes" className="logo-bio-fond-vert-titre-italiennes" />
+        </h2>
 
         <Conteneur_Italiennes_Generique
           onAfficherBlocChange={setAfficherBloc}

@@ -82,23 +82,39 @@ export default function Conteneur_Boissons_Generique({
 
       <ul className="liste-boissons">
         {boissonsAffichees.map((boisson) => (
-          <li key={boisson.id_boisson} className="item-boisson">
-            {admin ? (
-              <label className="ligne-boisson">
-                <input
-                  className="checkbox"
-                  type="checkbox"
-                  checked={Number(boisson.actif) === 1}
-                  onChange={() =>
-                    toggleBoisson(boisson.id_boisson, boisson.actif)
-                  }
-                />
-                <span>{boisson.nom_boisson}</span>
-              </label>
-            ) : (
-              boisson.nom_boisson
-            )}
-          </li>
+          <li
+  key={boisson.id_boisson}
+  className={`item-boisson ${
+    Number(boisson.bio) === 1 ? "boisson-bio" : ""
+  }`}
+>
+  {admin ? (
+    <label className="ligne-boisson">
+      <input
+        className="checkbox"
+        type="checkbox"
+        checked={Number(boisson.actif) === 1}
+        onChange={() =>
+          toggleBoisson(boisson.id_boisson, boisson.actif)
+        }
+      />
+
+      <span>{boisson.nom_boisson}</span>
+    </label>
+) : (
+  <span className="nom-boisson">
+    {boisson.nom_boisson}
+
+    {Number(boisson.bio) === 1 && (
+      <img
+        src="/images/logoeuropeenAB.png"
+        alt="BIO"
+        className="logo-bio"
+      />
+    )}
+  </span>
+)}
+</li>
         ))}
       </ul>
     </div>

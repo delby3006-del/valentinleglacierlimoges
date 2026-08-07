@@ -16,10 +16,24 @@ export default function Conteneur_TV_Principale() {
     );
   };
 
-  const classeColonnes = (liste) => {
-    if (liste.length >= 24) return "colonnes-3";
-    return "colonnes-2";
-  };
+const creerColonnes = (liste, nombreParColonne = 13) => {
+  const colonnes = [];
+
+  for (let i = 0; i < liste.length; i += nombreParColonne) {
+    colonnes.push(liste.slice(i, i + nombreParColonne));
+  }
+
+  return colonnes;
+};
+
+const creerClasseAllergene = (allergene) => {
+  return allergene
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/œ/g, "oe")
+    .replace(/\s+/g, "-");
+};
 
   useEffect(() => {
     const chargerGlacesTV = async () => {
@@ -35,11 +49,15 @@ export default function Conteneur_TV_Principale() {
         const data = await res.json();
 
         setCremes(
-          trierAlphabetique(data.filter((glace) => Number(glace.id_type) === 1)),
+          trierAlphabetique(
+            data.filter((glace) => Number(glace.id_type) === 1),
+          ),
         );
 
         setSorbets(
-          trierAlphabetique(data.filter((glace) => Number(glace.id_type) === 2)),
+          trierAlphabetique(
+            data.filter((glace) => Number(glace.id_type) === 2),
+          ),
         );
       } catch (error) {
         console.error("Erreur chargement glaces TV :", error);
@@ -139,90 +157,104 @@ export default function Conteneur_TV_Principale() {
       </section>
 
       <section
-        className={`tv-contenu ${cremes.length >= 24 ? "cremes-large" : ""}`}
-      >
-       <div className="tv-colonne">
-  <h2>
-    Crèmes Glacées
-    <span className="tv-allergene-rond allergene-lait"></span>
-  </h2>
+  className={`tv-contenu ${
+    cremes.length >= 24 ? "cremes-large" : ""
+  }`}
+>
+  <div className="tv-colonne">
+    <h2>
+      Crèmes Glacées
+      <span className="tv-allergene-rond allergene-lait"></span>
+    </h2>
 
-  <ul className={`tv-liste-glaces ${classeColonnes(cremes)}`}>
-    {cremes.map((glace) => (
-      <li key={glace.id_glace}>
-        <span className="tv-nom-glace">
-         {glace.nom_glace}
-          {Number(glace.bio) !== 1 && (
-            <span className="tv-mention-non-bio"> Non BIO</span>
-          )}
-        </span>
+    <div className="tv-liste-glaces">
+      {creerColonnes(cremes).map((colonne, indexColonne) => (
+        <ul
+          className="tv-liste-colonne"
+          key={`cremes-colonne-${indexColonne}`}
+        >
+          {colonne.map((glace) => (
+            <li key={glace.id_glace}>
+              <span className="tv-nom-glace">
+                {glace.nom_glace}
 
-        {glace.allergenes?.length > 0 && (
-          <span className="tv-allergenes">
-            {glace.allergenes
-              .filter(
-                (allergene) =>
-                  allergene.toLowerCase() !== "lait"
-              )
-              .map((allergene) => (
-                <span
-                  key={allergene}
-                  className={`tv-allergene-rond allergene-${allergene
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .replace(/\s+/g, "-")
-                    .replace(/œ/g, "oe")}`}
-                  title={allergene}
-                />
-              ))}
-          </span>
-        )}
-      </li>
-    ))}
-  </ul>
-</div>
-        <div className="tv-colonne">
-          <h2>Sorbets</h2>
+                {Number(glace.bio) !== 1 && (
+                  <span className="tv-mention-non-bio">
+                    {" "}
+                    Non BIO
+                  </span>
+                )}
+              </span>
 
-          <ul className={`tv-liste-glaces ${classeColonnes(sorbets)}`}>
-            {sorbets.map((glace) => (
-              <li key={glace.id_glace}>
-                <span className="tv-nom-glace">
-                  {glace.nom_glace === "Citronnelle fleur de Pois" ? (
-                    <>
-                      Citronnelle
-                    </>
-                  ) : (
-                    glace.nom_glace
-                  )}
-
-                  {Number(glace.bio) !== 1 && (
-                    <span className="tv-mention-non-bio"> Non BIO</span>
-                  )}
-                </span>
-
-                {glace.allergenes?.length > 0 && (
-                  <span className="tv-allergenes">
-                    {glace.allergenes.map((allergene) => (
+              {glace.allergenes?.length > 0 && (
+                <span className="tv-allergenes">
+                  {glace.allergenes
+                    .filter(
+                      (allergene) =>
+                        allergene.toLowerCase() !== "lait",
+                    )
+                    .map((allergene) => (
                       <span
                         key={allergene}
-                        className={`tv-allergene-rond allergene-${allergene
-                          .toLowerCase()
-                          .normalize("NFD")
-                          .replace(/[\u0300-\u036f]/g, "")
-                          .replace(/\s+/g, "-")
-                          .replace(/œ/g, "oe")}`}
+                        className={`tv-allergene-rond allergene-${creerClasseAllergene(
+                          allergene,
+                        )}`}
                         title={allergene}
                       />
                     ))}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+<div className="tv-separateur"></div>
+  <div className="tv-colonne">
+    <h2>Sorbets</h2>
+
+    <div className="tv-liste-glaces">
+      {creerColonnes(sorbets).map((colonne, indexColonne) => (
+        <ul
+          className="tv-liste-colonne"
+          key={`sorbets-colonne-${indexColonne}`}
+        >
+          {colonne.map((glace) => (
+            <li key={glace.id_glace}>
+              <span className="tv-nom-glace">
+                {glace.nom_glace === "Citronnelle fleur de Pois"
+                  ? "Citronnelle"
+                  : glace.nom_glace}
+
+                {Number(glace.bio) !== 1 && (
+                  <span className="tv-mention-non-bio">
+                    {" "}
+                    Non BIO
                   </span>
                 )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+              </span>
+
+              {glace.allergenes?.length > 0 && (
+                <span className="tv-allergenes">
+                  {glace.allergenes.map((allergene) => (
+                    <span
+                      key={allergene}
+                      className={`tv-allergene-rond allergene-${creerClasseAllergene(
+                        allergene,
+                      )}`}
+                      title={allergene}
+                    />
+                  ))}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+</section>
 
       <section className="tv-legende-allergenes">
         <div className="legende-item">
@@ -254,14 +286,16 @@ export default function Conteneur_TV_Principale() {
           <span className="tv-allergene-rond allergene-sesame"></span>
           <p>Sésame</p>
         </div>
+
         <div className="legende-item">
           <span className="tv-allergene-rond allergene-soja"></span>
           <p>Soja</p>
         </div>
       </section>
 
-      <section className="tv-bas"> 
-        <img className="tv-qrcode"
+      <section className="tv-bas">
+        <img
+          className="tv-qrcode"
           src="/images/qrcode_ecran1.png"
           alt="QR code pour accéder au menu de Valentin le glacier sur votre téléphone"
         />

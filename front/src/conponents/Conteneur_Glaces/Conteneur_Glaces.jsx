@@ -13,11 +13,11 @@ export default function Conteneur_Glaces() {
           </p>
           <section className="section-conteneur-glaces">
             <div className="conteneur-glaces-parfumes">
-              <ConteneurGlaces idType={1} actif={1} titre="🍦 Crèmes Glacées" />
+              <ConteneurGlaces    idType={1}actif={1} bioSeulement={true} titre="🍦 Crèmes Glacées" />
             </div>
 
             <div className="conteneur-glaces-parfumes">
-              <ConteneurGlaces idType={2} actif={1} titre="🍧 Sorbets" />
+              <ConteneurGlaces    idType={2} actif={1} bioSeulement={true} titre="🍧 Sorbets" />
             </div>
           </section>
           <div className="conteneur-glaces-emporter">

@@ -8,10 +8,15 @@ export default function Conteneur_Presentation_Text() {
         Valentin <br />
         <small className="titre-secondary">le glacier</small>
       </h1>
+      <img
+        className="logo-bio-fond-vert"
+        src="/images/logoeuropeenAB.png"
+        alt="Logo Valentin le glacier"
+      />
       <div className="description-presentation-container">
         <h2 className="description-presentation">
           Des glaces & sorbets <br className="description-secondary" />
-          biologiques & artisanales
+          biologiques & artisanals
         </h2>
         <img
           className="logo-terreadelice"

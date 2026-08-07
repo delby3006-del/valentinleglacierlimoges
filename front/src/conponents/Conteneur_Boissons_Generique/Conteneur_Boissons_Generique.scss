@@ -30,6 +30,17 @@
   color: var(--color-text-quaternary);
 }
 
+.nom-boisson {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo-bio {
+  width: 20px;
+  height: 18px;
+  flex-shrink: 0;
+}
 @media screen and (max-width: 900px) {
   .conteneur-boissons-generique {
     width: 100%;

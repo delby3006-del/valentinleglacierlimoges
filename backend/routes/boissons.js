@@ -4,19 +4,20 @@ const db = require("../db");
 const authAdmin = require("../middlewares/authAdmin");
 
 router.get("/", async (req, res) => {
-  const sql = `
-    SELECT 
-      bt.id_type,
-      bt.nom_type,
-      bt.ordre_affichage,
-      bn.id_boisson,
-      bn.nom_boisson,
-      bn.actif AS boisson_actif
-    FROM boissons_type bt
-    LEFT JOIN boissons_nom bn
-      ON bt.id_type = bn.id_type
-    ORDER BY bt.ordre_affichage, bn.id_boisson
-  `;
+const sql = `
+  SELECT 
+    bt.id_type,
+    bt.nom_type,
+    bt.ordre_affichage,
+    bn.id_boisson,
+    bn.nom_boisson,
+    bn.actif AS boisson_actif,
+    bn."BIO" AS bio
+  FROM boissons_type bt
+  LEFT JOIN boissons_nom bn
+    ON bt.id_type = bn.id_type
+  ORDER BY bt.ordre_affichage, bn.id_boisson
+`;
 
   try {
     const result = await db.query(sql);
@@ -35,12 +36,13 @@ router.get("/", async (req, res) => {
       }
 
       if (row.id_boisson) {
-        boissonsMap.get(row.id_type).boissons.push({
-          id_boisson: row.id_boisson,
-          nom_boisson: row.nom_boisson,
-          actif: row.boisson_actif,
-        });
-      }
+  boissonsMap.get(row.id_type).boissons.push({
+    id_boisson: row.id_boisson,
+    nom_boisson: row.nom_boisson,
+    actif: row.boisson_actif,
+    bio: row.bio,
+  });
+}
     });
 
     return res.json(Array.from(boissonsMap.values()));

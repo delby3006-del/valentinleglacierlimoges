@@ -36,7 +36,7 @@ export default function MentionsLegales() {
           <h2>Propriété intellectuelle</h2>
           <p>
             L’ensemble des éléments présents sur le site, notamment les textes,
-            images, logos, graphismes et contenus, est protégé.
+            images, logos, graphismes et contenus, sont protégés.
           </p>
           <p>
             Toute reproduction, représentation, modification ou utilisation,

@@ -8,10 +8,12 @@ export default function ConteneurGlaces({
   actif,
   titre,
   afficherCheckbox = false,
+  bioSeulement = false,
 }) {
   const [glaces, setGlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [erreur, setErreur] = useState("");
+
 
   useEffect(() => {
     const chargerGlaces = async () => {
@@ -86,11 +88,15 @@ export default function ConteneurGlaces({
   if (loading) return <p>Chargement...</p>;
   if (erreur) return <p>{erreur}</p>;
 
+const glacesAffichees = bioSeulement
+  ? glaces.filter((glace) => Number(glace.bio) === 1)
+  : glaces;
+
   return (
     <div className="conteneur-glaces-colone">
       <h3 className="titre-conteneur-glaces-type">{titre}</h3>
       <ul className="conteneur-glaces-liste">
-        {glaces.map((glace) => (
+        {glacesAffichees.map((glace) => (
           <li key={glace.id_glace} className="ligne-glace">
             {afficherCheckbox ? (
               <label>
