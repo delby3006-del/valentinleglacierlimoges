@@ -1,0 +1,49 @@
+.statut-boutique {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: fit-content;
+
+  padding: 8px 14px;
+
+  border-radius: 25px;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.statut-boutique-point {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+}
+
+.statut-boutique-ouvert {
+  background: #e6f4ea;
+  color: #24752b;
+
+  .statut-boutique-point {
+    background: #34a853;
+  }
+}
+
+.statut-boutique-ferme {
+  background: #fce8e6;
+  color: #a52a2a;
+
+  .statut-boutique-point {
+    background: #d93025;
+  }
+}
+
+.statut-boutique-vacances {
+  background: #fff4d6;
+  color: #8a6100;
+
+  .statut-boutique-point {
+    background: #e6a700;
+  }
+}

@@ -173,10 +173,15 @@ const creerClasseAllergene = (allergene) => {
           className="tv-liste-colonne"
           key={`cremes-colonne-${indexColonne}`}
         >
-          {colonne.map((glace) => (
+  			  {colonne.map((glace) => (
             <li key={glace.id_glace}>
               <span className="tv-nom-glace">
-                {glace.nom_glace}
+                {glace.nom_glace === "Tiramisu"
+                  ? (         <>
+          Tiramisu
+          <span className="tv-sous-nom-glace">à l'amaretto</span>
+        </> )
+                : glace.nom_glace}
 
                 {Number(glace.bio) !== 1 && (
                   <span className="tv-mention-non-bio">

@@ -31,6 +31,26 @@ $tablette: 1024px;
   margin-top: 1rem;
 }
 
+.conteneur-presentation-text {
+  width: 50%;
+  min-height: 700px;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-text-quaternary);
+
+
+  .statut-boutique {
+    position: absolute;
+    top: 110px;
+    right: 3rem;
+  }
+}
+
 .logo-bio-fond-vert {
   width: 100px;
   height: auto;
@@ -137,6 +157,11 @@ $tablette: 1024px;
     align-items: center;
     text-align: center;
   }
+    .statut-boutique {
+    position: absolute;
+    top: 110px;
+    right: 3rem;
+  }
 
   .description-presentation-container {
     justify-content: center;
@@ -145,12 +170,24 @@ $tablette: 1024px;
   .description-text {
     max-width: 650px;
   }
+
 }
 
 @media screen and (max-width: $mobile) {
   .conteneur-presentation-text {
-    padding: 2rem 1.2rem;
+    padding: 5rem 1.2rem 2rem;
+
+
+    .statut-boutique {
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+    }
   }
+
+  
 
   .titre-presentation {
     font-size: 3rem;

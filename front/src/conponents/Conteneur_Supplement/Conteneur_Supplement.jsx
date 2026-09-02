@@ -37,21 +37,35 @@ export default function Conteneur_Supplements() {
     );
   }
 
-  if (!italiennesVisibles && !granitesVisibles) {
-    return null;
-  }
+if (!italiennesVisibles && !granitesVisibles) {
+  return null;
+}
 
-  if (italiennesVisibles && !granitesVisibles) {
-    return <Conteneur_Italiennes />;
-  }
-
-  if (!italiennesVisibles && granitesVisibles) {
-    return <Conteneur_Granites />;
-  }
-
+if (italiennesVisibles && !granitesVisibles) {
   return (
-    <section className="section-supplements-saison">
-      <h2 className="titre-supplements-saison">Les suppléments de saison</h2>
+    <section id="section-supplements-saison">
+      <Conteneur_Italiennes />
+    </section>
+  );
+}
+
+if (!italiennesVisibles && granitesVisibles) {
+  return (
+    <section id="section-supplements-saison">
+      <Conteneur_Granites />
+    </section>
+  );
+}
+
+
+return (
+  <section
+    className="section-supplements-saison"
+    id="section-supplements-saison"
+  >
+    <h2 className="titre-supplements-saison">
+      Les suppléments de saison
+    </h2>
 
       <div className="conteneur-supplements-saison">
         <div className="bloc-supplement-saison">

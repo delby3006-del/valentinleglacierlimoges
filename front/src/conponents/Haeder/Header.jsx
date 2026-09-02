@@ -2,6 +2,7 @@ import "./Header.scss";
 import Coordonnees from "../Coordonnees/Coordonnes.jsx";
 import { Link } from "react-router-dom";
 import { FaLock } from "react-icons/fa";
+import Nav_Dynamique from "../Nav_Dynamique/Nav_Dynamique.jsx";
 
 export default function Header({ mode = "site" }) {
   const scrollTo = (id) => {
@@ -17,11 +18,12 @@ export default function Header({ mode = "site" }) {
         <div className="header-coordonnee">
           <Coordonnees showTelephone={false} />
           <p className="info-header">
-             Glaces BIO et Artisanal
+            Glaces BIO et Artisanals
           </p>
           <Coordonnees showAdresse={false} />
         </div>
       </div>
+
       <div className="barre-nav">
         <div className="logo-valentin">
           <Link to="/">
@@ -33,65 +35,22 @@ export default function Header({ mode = "site" }) {
         </div>
 
         <nav className="nav" aria-label="Navigation principale">
-          {mode === "admin" ? (
-            <>
-              <Link to="/admin/histoire">Notre Histoire</Link>
-              <Link to="/admin/glaces">Nos Parfums</Link>
-              <Link to="/admin/gourmandises">Nos Gourmandises</Link>
-              <Link to="/admin/boissons">Boissons</Link>
-              <Link to="/admin/infos">Infos Pratiques</Link>
-            </>
-          ) : (
-            <>
-              <a
-                href="#conteneur-histoire"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo("conteneur-histoire");
-                }}
-              >
-                Notre Histoire
-              </a>
-
-              <a
-                href="#conteneur-glaces"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo("conteneur-glaces");
-                }}
-              >
-                Nos Parfums
-              </a>
-
-              <a
-                href="#section-gourmandises"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo("section-gourmandises");
-                }}
-              >
-                Nos Gourmandises
-              </a>
-
-              <a
-                href="#section-boissons"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo("section-boissons");
-                }}
-              >
-                Nos boissons
-              </a>
-              <a href="#infos-pratiques">Infos Pratiques</a>
-            </>
-          )}
+          <Nav_Dynamique mode={mode} scrollTo={scrollTo} />
 
           <p>
-            <img className="logo-bio-" src="/images/logoeuropeenAB1.png" alt="Logo bio" />
-            BIO</p>
+            <img
+              className="logo-bio-"
+              src="/images/logoeuropeenAB1.png"
+              alt="Logo bio"
+            />
+            BIO
+          </p>
+
           <Link to={mode === "admin" ? "/" : "/login"}>
-            <FaLock className="cadena-fermer"
-            alt="Se connecter" />
+            <FaLock
+              className="cadena-fermer"
+              alt="Se connecter"
+            />
           </Link>
         </nav>
       </div>

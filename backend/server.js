@@ -11,6 +11,8 @@ const boissonsRoutes = require("./routes/boissons");
 const connexionRoutes = require("./routes/connexion");
 const allergenesTVRoutes = require("./routes/allergenesTV");
 const TVAnglais = require("./routes/TVAnglais");
+const statutBoutiqueRoutes = require("./routes/statutBoutique");
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -26,6 +28,8 @@ app.use("/api/boissons", boissonsRoutes);
 app.use("/api/connexion", connexionRoutes);
 app.use("/api/allergenes", allergenesTVRoutes);
 app.use("/api/tv-anglais", TVAnglais);
+app.use("/api/statut-boutique", statutBoutiqueRoutes);
+
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
 });

@@ -1,5 +1,6 @@
 import "./Conteneur_Presentation_Text.scss";
 import Coordonnees from "../Coordonnees/Coordonnes";
+import Conteneur_Statut_Boutique from "../Conteneur_Statut_Boutique/Conteneur_Statut_Boutique";
 
 export default function Conteneur_Presentation_Text() {
   return (
@@ -8,10 +9,11 @@ export default function Conteneur_Presentation_Text() {
         Valentin <br />
         <small className="titre-secondary">le glacier</small>
       </h1>
+      <Conteneur_Statut_Boutique />
       <img
         className="logo-bio-fond-vert"
         src="/images/logoeuropeenAB.png"
-        alt="Logo Valentin le glacier"
+        alt="Logo bio fond vert"
       />
       <div className="description-presentation-container">
         <h2 className="description-presentation">

@@ -95,10 +95,16 @@ export default function ConteneurGlaces({
     : glaces;
 
   const imagesParfums = {
-    "Fève de tonka": "/images/feve.png",
-    "Yaourt au timut": "/images/timut.png",
-    "Pomelo": "/images/pomelo.png",
-    "Main de bouddha": "/images/bouddha.png",
+    "Fève de tonka": "/images/parfum_glace/feve.png",
+    "Yaourt au timut": "/images/parfum_glace/timut.png",
+    "Pomelo": "/images/parfum_glace/pomelo.png",
+    "Main de bouddha": "/images/parfum_glace/bouddha.png",
+    "Plombière": "/images/parfum_glace/plombiere.png",
+    "Réglisse": "/images/parfum_glace/reglisse.png",
+    "Cardamome": "/images/parfum_glace/cardamome.png",
+    "Bergamote": "/images/parfum_glace/bergamote.png",
+    "Reine des Prés/Miel": "/images/parfum_glace/Reine.png",
+    "Sureau (fleur)": "/images/parfum_glace/sureau.png",
   };
 
   return (
