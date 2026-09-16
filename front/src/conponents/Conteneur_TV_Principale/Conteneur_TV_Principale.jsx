@@ -130,29 +130,29 @@ const creerClasseAllergene = (allergene) => {
       </section>
 
       <section className="tv-prix">
-        <p>
+        <p className="tv-prix-titre">
           1 boule
-          <span>3,70 €</span>
+          <span className="tv-prix-valeur">3,70 €</span>
         </p>
 
-        <p>
+        <p className="tv-prix-titre">
           2 boules
-          <span>6,00 €</span>
+          <span className="tv-prix-valeur">6,00 €</span>
         </p>
 
-        <p>
+        <p className="tv-prix-titre">
           3 boules
-          <span>7,90 €</span>
+          <span className="tv-prix-valeur">7,90 €</span>
         </p>
 
-        <p>
+        <p className="tv-prix-titre">
           Milkshake
-          <span>6,80 €</span>
+          <span className="tv-prix-valeur">6,80 €</span>
         </p>
 
-        <p>
+        <p className="tv-prix-titre">
           + chantilly maison
-          <span>1,40 €</span>
+          <span className="tv-prix-valeur">1,40 €</span>
         </p>
       </section>
 
@@ -220,7 +220,7 @@ const creerClasseAllergene = (allergene) => {
     <h2>Sorbets</h2>
 
     <div className="tv-liste-glaces">
-      {creerColonnes(sorbets).map((colonne, indexColonne) => (
+      {creerColonnes(sorbets, 12).map((colonne, indexColonne) => (
         <ul
           className="tv-liste-colonne"
           key={`sorbets-colonne-${indexColonne}`}

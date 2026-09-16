@@ -139,29 +139,29 @@ export default function Conteneur_TV_Principale_Anglais() {
       </section>
 
       <section className="tv-prix">
-        <p>
+        <p className="tv-prix-titre">
           1 Scoop
-          <span>3,70 €</span>
+          <span className="tv-prix-valeur-anglais">3,70 €</span>
         </p>
 
-        <p>
+        <p className="tv-prix-titre-anglais">
           2 Scoops
-          <span>6,00 €</span>
+          <span className="tv-prix-valeur-anglais">6,00 €</span>
         </p>
 
-        <p>
+        <p className="tv-prix-titre-anglais">
           3 Scoops
-          <span>7,90 €</span>
+          <span className="tv-prix-valeur-anglais">7,90 €</span>
         </p>
 
-        <p>
+        <p className="tv-prix-titre-anglais">
           Milkshake
-          <span>6,80 €</span>
+          <span className="tv-prix-valeur-anglais">6,80 €</span>
         </p>
 
-        <p>
+        <p className="tv-prix-titre-anglais">
           + Whipped Cream
-          <span>1,40 €</span>
+          <span className="tv-prix-valeur-anglais">1,40 €</span>
         </p>
       </section>
 
@@ -263,7 +263,7 @@ export default function Conteneur_TV_Principale_Anglais() {
         </div>
       </section>
 
-      <section className="tv-legende-allergenes">
+      <section className="tv-legende-allergenes-anglais">
         <div className="legende-item">
           <span className="tv-allergene-rond allergene-lait"></span>
           <p>Milk</p>
