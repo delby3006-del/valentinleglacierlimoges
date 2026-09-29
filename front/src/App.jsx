@@ -5,6 +5,7 @@ import Page_accueil from "./pages/Page_Accueil.jsx";
 import Page_login from "./pages/Page_Login.jsx";
 import Page_admin from "./pages/Page_Admin.jsx";
 import Pages_TV_Principale from "./pages/Pages_TV_Pricipale.jsx";
+import Pages_TV_Principale_Hallowen from "./pages/Page_TV_Principale_Hallowen.jsx";
 import Page_Mention_Legale from "./pages/Page_Mention_Legale.jsx";
 import Pages_TV_Principale_Anglais from "./pages/Page_TV_Principale_Anglais.jsx";
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Page_login />} />
         <Route path="admin" element={<Page_admin />} />
         <Route path="/tv" element={<Pages_TV_Principale />} />
+        <Route path="/tv/hallowen" element={<Pages_TV_Principale_Hallowen />} />
         <Route path="/tv/anglais" element={<Pages_TV_Principale_Anglais />} />
         <Route path="/mention-legale" element={<Page_Mention_Legale />} />
       </Routes>
