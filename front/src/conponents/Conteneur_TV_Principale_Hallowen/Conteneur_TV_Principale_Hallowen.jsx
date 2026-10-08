@@ -8,10 +8,20 @@ export default function Conteneur_TV_Principale_Hallowen() {
   const [loading, setLoading] = useState(true);
   const [erreur, setErreur] = useState("");
 
+const [demarrerChauveSouris, setDemarrerChauveSouris] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setDemarrerChauveSouris(true);
+  }, 15000);
+
+  return () => clearTimeout(timer);
+}, []);
+
   // ============================================
   // EFFET GLITCH / FANTÔME
   // ============================================
-
+ 
   const [glitch, setGlitch] = useState(false);
 
   useEffect(() => {
@@ -89,7 +99,7 @@ export default function Conteneur_TV_Principale_Hallowen() {
       video.classList.remove("cachee");
 
       video.play();
-    }, 25000);
+    }, 20000);
   };
 
   // ============================================
@@ -109,7 +119,7 @@ export default function Conteneur_TV_Principale_Hallowen() {
       video.classList.remove("cachee");
 
       video.play();
-    }, 75000);
+    }, 105000);
   };
 
   // ============================================
@@ -129,7 +139,7 @@ export default function Conteneur_TV_Principale_Hallowen() {
       video.classList.remove("cachee");
 
       video.play();
-    }, 13000);
+    }, 30000);
   };
 
   // ============================================
@@ -301,17 +311,19 @@ export default function Conteneur_TV_Principale_Hallowen() {
           playsInline
           onEnded={relancerVideoAraignee}
         />
-
+        
         {/* CHAUVE-SOURIS */}
 
-        <video
-          className="tv-video-chauve-sourie"
-          src="/videos/chauve-sourie.webm"
-          autoPlay
-          muted
-          playsInline
-          onEnded={relancerVideoChauveSourie}
-        />
+        {demarrerChauveSouris && (
+          <video
+            className="tv-video-chauve-sourie"
+            src="/videos/chauve-sourie.webm"
+            autoPlay
+            muted
+            playsInline
+            onEnded={relancerVideoChauveSourie}
+          />
+        )}
 
         {/* SQUELETTE */}
 
