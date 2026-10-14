@@ -86,41 +86,71 @@ useEffect(() => {
   // ARAIGNÉE
   // ============================================
 
-  const relancerVideoAraignee = (e) => {
-    const video = e.currentTarget;
+const relancerVideoAraignee = (e) => {
+  const video = e.currentTarget;
 
-    // Disparition progressive
-    video.classList.add("cachee");
+  // Masquer immédiatement la vidéo terminée
+  video.classList.add("cachee");
 
-    setTimeout(() => {
-      video.currentTime = 0;
+  // Attendre 20 secondes avant de recommencer
+  setTimeout(() => {
+    if (!video.isConnected) return;
 
-      // Réapparition progressive
-      video.classList.remove("cachee");
+    video.currentTime = 0;
 
-      video.play();
-    }, 20000);
-  };
+    // Relancer la vidéo
+    video.play()
+      .then(() => {
+        video.classList.remove("cachee");
+      })
+      .catch((error) => {
+        console.error("Erreur vidéo araignée :", error);
+      });
+
+  }, 20000);
+};
 
   // ============================================
   // CHAUVE-SOURIS
   // ============================================
+const DUREE_FONDU_CHAUVE_SOURIE = 2; // secondes avant la fin
+
+const surveillerFinChauveSourie = (e) => {
+  const video = e.currentTarget;
+
+  if (!video.duration) return;
+
+  const tempsRestant = video.duration - video.currentTime;
+
+  if (
+    tempsRestant <= DUREE_FONDU_CHAUVE_SOURIE &&
+    !video.classList.contains("cachee")
+  ) {
+    video.classList.add("cachee");
+  }
+};
 
   const relancerVideoChauveSourie = (e) => {
-    const video = e.currentTarget;
+  const video = e.currentTarget;
 
-    // Disparition progressive
-    video.classList.add("cachee");
+  // Au cas où la classe n'aurait pas été ajoutée
+  video.classList.add("cachee");
 
-    setTimeout(() => {
-      video.currentTime = 0;
+  setTimeout(() => {
+    if (!video.isConnected) return;
 
-      // Réapparition progressive
-      video.classList.remove("cachee");
+    video.currentTime = 0;
 
-      video.play();
-    }, 105000);
-  };
+    video.play()
+      .then(() => {
+        // Réapparition progressive
+        video.classList.remove("cachee");
+      })
+      .catch((error) => {
+        console.error("Erreur vidéo chauve-souris :", error);
+      });
+  }, 105000);
+};
 
   // ============================================
   // SQUELETTE
@@ -242,13 +272,7 @@ useEffect(() => {
   // ============================================
 
   return (
-    <main className={`tv-page ${glitch ? "tv-glitch" : ""}`}>
-
-      <img
-        className="image-glace"
-        src="/images/glace3B.png"
-        alt="glace 3 boules"
-      />
+    <main className={`tv-page-halloween ${glitch ? "tv-glitch" : ""}`}>
 
       <section className="tv-header">
         <img
@@ -311,18 +335,27 @@ useEffect(() => {
           playsInline
           onEnded={relancerVideoAraignee}
         />
-        
+                <video
+          className="tv-video-araignee autre-cote"
+          src="/videos/araignee2.webm"
+          autoPlay
+          muted
+          playsInline
+          onEnded={relancerVideoAraignee}
+        />
+
         {/* CHAUVE-SOURIS */}
 
         {demarrerChauveSouris && (
-          <video
-            className="tv-video-chauve-sourie"
-            src="/videos/chauve-sourie.webm"
-            autoPlay
-            muted
-            playsInline
-            onEnded={relancerVideoChauveSourie}
-          />
+<video
+    className="tv-video-chauve-sourie"
+    src="/videos/chauve-sourie.webm"
+    autoPlay
+    muted
+    playsInline
+    onTimeUpdate={surveillerFinChauveSourie}
+    onEnded={relancerVideoChauveSourie}
+  />
         )}
 
         {/* SQUELETTE */}
@@ -537,11 +570,31 @@ useEffect(() => {
 
       <section className="tv-bas">
 
-        <img
-          className="tv-qrcode"
-          src="/images/qrcode_ecran1.png"
-          alt="QR code pour accéder au menu de Valentin le glacier sur votre téléphone"
-        />
+       {/* cici */}
+<video
+  className="tv-video-citrouille"
+  src="/videos/citrouille.webm"
+  autoPlay
+  muted
+  playsInline
+  onEnded={(e) => {
+    const video = e.currentTarget;
+
+    // Faire disparaître la vidéo
+    video.classList.add("cachee");
+
+    setTimeout(() => {
+      video.currentTime = 0;
+
+      video.play().then(() => {
+        // Réafficher la vidéo au redémarrage
+        video.classList.remove("cachee");
+      }).catch((error) => {
+        console.error("Erreur vidéo citrouille :", error);
+      });
+    }, 2000);
+  }}
+/>
 
         <img
           className="tv-logo-terrea-delice"

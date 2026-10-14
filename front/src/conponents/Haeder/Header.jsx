@@ -18,7 +18,7 @@ export default function Header({ mode = "site" }) {
         <div className="header-coordonnee">
           <Coordonnees showTelephone={false} />
           <p className="info-header">
-            Glaces BIO et Artisanals
+            Glaces BIO et Artisanales
           </p>
           <Coordonnees showAdresse={false} />
         </div>

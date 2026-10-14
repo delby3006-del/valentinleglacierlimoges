@@ -60,27 +60,34 @@
   100% { transform: translate(0, 0); filter: blur(0); }
 
 }
-.tv-page {
+.tv-page-halloween {
   position: relative;
-
   height: 100vh;
   overflow: hidden;
 
-  background: linear-gradient(#dca983, #ece1ab);
-
-  color: var(--color-background);
-
   padding: 1rem 2rem;
-
   font-family: "Fredoka", "Fuzzy", Arial, sans-serif;
 
   display: flex;
   flex-direction: column;
-
   box-sizing: border-box;
 }
 
-/* Les éléments doivent passer devant l'image de fond */
+/* Image de fond, derrière le contenu */
+.tv-page-halloween::before {
+  content: "";
+  position: absolute;
+  inset: 0;               /* équivaut à top/left/right/bottom: 0 */
+  z-index: 0;
+
+  background-image: url("/images/halloween.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0.6;           /* 1 = image pleine, 0 = invisible */
+  pointer-events: none;
+}
 
 .tv-header,
 .tv-prix,
@@ -95,23 +102,6 @@
    IMAGE CENTRALE
 ========================= */
 
-.image-glace {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-
-  width: 400px;
-  height: auto;
-
-  pointer-events: none;
-
-  z-index: 0;
-
-  opacity: 0.3;
-}
 
 /* =========================
    HEADER
@@ -231,6 +221,13 @@
   transition: opacity 1s ease-in-out;
 }
 
+.autre-cote {
+  right: -105px;
+  left: auto;
+  position: fixed;
+  top: 0;
+}
+
 .tv-video-araignee.cachee {
   opacity: 0;
 }
@@ -250,7 +247,7 @@
   z-index: 9999;
 
   opacity: 1;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 2s ease-in-out;
 }
 
 .tv-video-chauve-sourie.cachee {
@@ -262,7 +259,7 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 400px;
+  width: 600px;
   height: auto;
   object-fit: cover;
   pointer-events: none;
@@ -311,7 +308,7 @@
    LISTE DES PARFUMS
 ========================= */
 
-.tv-page {
+.tv-page-halloween .tv-colonne {
   .tv-liste-glaces {
     list-style: none;
 
@@ -522,11 +519,17 @@ height: 30%;
 
 /* QR CODE */
 
-.tv-qrcode {
-  width: 85px;
-
-  height: auto;
+.tv-video-citrouille {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  width: 250px;
+  margin-left: -5.5rem;
 }
+
+.tv-video-citrouille.cachee {
+  opacity: 0;
+}
+
 
 /* Logo Terre Adélice */
 

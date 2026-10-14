@@ -18,7 +18,7 @@ export default function Conteneur_Presentation_Text() {
       <div className="description-presentation-container">
         <h2 className="description-presentation">
           Des glaces <br className="description-secondary" />
-          biologiques & artisanals
+          biologiques & artisanales
         </h2>
         <img
           className="logo-terreadelice"
